@@ -9,12 +9,11 @@ import com.opensymphony.xwork2.ActionSupport;
 
 @SuppressWarnings("serial")
 @Action
-@Namespace("/home")
+@Namespace("/")
 @ResultPath(value = "/")
 @Result(name = "success", location = "index.html")
 public class IndexAction extends ActionSupport {
 	public String execute() {
-		System.out.println('a');
 		return SUCCESS;
 	}
 }
