@@ -1,14 +1,12 @@
 package cn.sotou.web.action;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 public class IndexActionTest {
 
 	@Test
 	public void test() {
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 
 }
