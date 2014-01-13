@@ -20,4 +20,31 @@
 		<module>sotoudao</module>
 	</modules>
 
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<url>http://localhost/manager/text</url>
+					<server>tomcat</server>
+					<username>ci_user</username>
+					<password>ci_user_qwer1234</password>
+					<update>true</update>
+					<path>/sotou</path>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
