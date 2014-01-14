@@ -19,4 +19,10 @@ public class InvestIndexController {
 		itemFilter.getAll();
 		return "invest/index";
 	}
+	
+	@RequestMapping("/filter")
+	public String filter() {
+		itemFilter.getAll();
+		return "invest/filter";
+	}
 }
