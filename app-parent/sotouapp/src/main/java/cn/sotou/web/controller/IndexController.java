@@ -12,9 +12,6 @@ public class IndexController {
 	public String index(
 			@RequestParam(value = "p", required = false) String param,
 			Model model) {
-		//model.addAttribute("param", param);
 		return "index";
 	}
 }
-
-

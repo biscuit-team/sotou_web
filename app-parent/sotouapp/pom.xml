@@ -48,6 +48,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+
+		<dependency>
 			<groupId>cn.sotou</groupId>
 			<artifactId>sotoudao</artifactId>
 			<version>${project.version}</version>

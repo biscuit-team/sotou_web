@@ -4,8 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<%@ include file="/WEB-INF/views/uicomponet/common_libs.jsp"%>
+
 <title>搜投网! 让投资更透明!</title>
 </head>
-<body>${param.p}
+<body>
+	<%@ include file="/WEB-INF/views/uicomponet/top_nav.jsp"%>
 </body>
 </html>

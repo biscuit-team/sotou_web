@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+
+.top_nav{
+	border-top: 4px solid #97CB4C;
+}
+
+.nav_container{
+	background:#E8F2DA;
+}
+
+.small_tab{
+	background:#97CB4C;
+	display:inline-block;
+}

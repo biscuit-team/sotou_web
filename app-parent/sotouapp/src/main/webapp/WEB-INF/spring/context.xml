@@ -13,7 +13,10 @@
 
 	<!-- Allow proxys -->
 	<aop:aspectj-autoproxy />
-
+	
+	<mvc:annotation-driven />
+	
+	
 	<context:component-scan base-package="cn.sotou.web.controller" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
