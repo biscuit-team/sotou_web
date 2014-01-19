@@ -13,5 +13,6 @@
 
 	<context:component-scan base-package="cn.sotou.web.biz.impl" />
 	<context:component-scan base-package="cn.sotou.web.biz" />
-	
+
+
 </beans:beans>
