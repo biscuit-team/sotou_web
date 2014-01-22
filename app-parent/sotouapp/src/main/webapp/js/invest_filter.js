@@ -1,6 +1,36 @@
 filter = {};
 initialFilter();
-
+a = '';
+d = [{
+    "id": -1,
+    "name": "全部00000000000",
+    "count": 12
+},{
+    "id": 2,
+    "name": "拍拍贷77777777",
+    "count": 2
+},
+    {
+        "id": 3,
+        "name": "拍拍贷44444",
+        "count": 3
+    },{
+        "id": 4,
+        "name": "拍拍贷33333",
+        "count": 1
+    },{
+        "id": 5,
+        "name": "拍拍贷22222",
+        "count": 1
+    },{
+        "id": 6,
+        "name": "拍拍贷11111",
+        "count": 1
+    },{
+        "id": 7,
+        "name": "拍拍贷99999999",
+        "count": 1
+    },]
 function initialFilter(){
 
     var sortCondition = {};
@@ -14,6 +44,9 @@ function initialFilter(){
     filter.chosenRate = 'rate0';
     filter.chosenPeriod = 'period0';
     filter.chosenSum = 'sum0';
+    filter.per = 20;
+    filter.page = 0;
+    filter.curPlat = "plat_-1";
 }
 
 function changeCondition(id){
@@ -35,10 +68,12 @@ function changeCondition(id){
         key +='Period';
         type = 'period';
     }
-
-    hideSelfDefine(type);
-    changeFilterUI(type,id);
-    ajaxCall();
+    if(filter[key] != id)
+    {
+        hideSelfDefine(type);
+        changeFilterUI(type,id);
+        ajaxCall({"refreshPage":true,"refreshPlat":true});
+    }
 }
 function changeFilterUI(type,newId){
     var map ={'rate':'Rate','sum':'Sum','period':'Period'};
@@ -48,7 +83,8 @@ function changeFilterUI(type,newId){
     $('#'+oldId).removeClass('active');
     $('#'+newId).addClass('active');
 }
-function ajaxCall(){
+function ajaxCall(refresh){
+    loadingBegin(refresh);
     var array = $('.filter_contain .active');
     var rate = $(array[0]);
     var sum = $(array[1]);
@@ -59,13 +95,14 @@ function ajaxCall(){
     var sumMax = sum.attr('data-max');
     var periodMin = period.attr('data-min');
     var periodMax = period.attr('data-max');
+    var plat = filter.curPlat.replace('plat_','');
     var orderBy = filter.sorted;
     var oType = filter.sortCondition[orderBy];
     var map ={true:'desc',false:'asc'};
     var orderType=map[oType];
-    var per = 20;
-    var page = 0;
-    var data ={'per':per,'page':page,'orderBy':orderBy,'orderType':orderType,'rate.min':rateMin,
+    var per = filter.per;
+    var page = filter.page;
+    var data ={'per':per,'page':page,'orderBy':orderBy,'orderType':orderType,'plat':plat,'rate.min':rateMin,
         'rate.max':rateMax,'sum.min':sumMin,'sum.max':sumMax,'period.min':periodMin,
         'period.max':periodMax};
     $.ajax({
@@ -74,12 +111,64 @@ function ajaxCall(){
         data : data,
         dataType : "json",
         success : function(data){
-            display(data);
+            data.statics = d;
+            setTimeout(function (){
+                display(data,refresh)
+            },2000);
+
         }
     });
 }
-function display(data){
-    console.log(data);
+function loadingBegin(refresh){
+    //platHide();
+    if(refresh.refreshPlat)
+    {
+        $('#plat_show').addClass('hide');
+        $('#plat_wrap ul').html("");
+    }
+    $('#loader').removeClass('hide');
+    $('#item_wrap').addClass('loading');
+}
+function display(data,refresh){
+    $('#loader').addClass('hide');
+    $('#item_wrap').removeClass('loading');
+    if(refresh.refreshPlat)
+    {
+        displayPlat(data.statics);
+    }
+    if(refresh.refreshPage)
+    {
+        iniPage(110);
+    }
+}
+function displayPlat(platArray){
+    var $ul = $('#plat_wrap ul');
+    var $li = $("<li></li>");
+    var tmp = platArray[0];
+    var id = "plat_"+tmp.id
+    $li.attr('id',id);
+    $li.text(tmp.name+"("+tmp.count+")");
+    $li.addClass('active');
+    $li.bind("click",function(e){
+        changePlat(e);
+    });
+    $ul.append($li);
+    for(var i =1;i<platArray.length;i++)
+    {
+        var $li = $("<li></li>");
+        var tmp = platArray[i];
+        var id = "plat_"+tmp.id
+        $li.attr('id',id);
+        $li.text(tmp.name+"("+tmp.count+")");
+        $li.bind("click",function(e){
+            changePlat(e);
+        });
+        $ul.append($li);
+    }
+    if(isPlatMore())
+    {
+        $('#plat_show').removeClass('hide');
+    }
 }
 function selfDefine(type){
     changeFilterUI(type,'');
@@ -130,7 +219,7 @@ function selfDefConfirm(type){
     $('#'+type+'_self_text').text(text);
     $('#'+type+'_self_text').removeClass('hide');
     $('#'+type+'_input_wrap').addClass('hide');
-    ajaxCall();
+    ajaxCall({"refreshPage":true,"refreshPlat":true});
 }
 function adaptText(type,minVal,maxVal){
     var text = '';
@@ -192,27 +281,42 @@ function adaptText(type,minVal,maxVal){
     }
     return text;
 }
+
+function isPlatMore(){
+    var hideHeight = $('#plat_wrap').height();
+    var realHeight = $('#plat_wrap ul').height();
+    if(realHeight > hideHeight)
+        return true;
+    else
+        return false;
+}
 function platShow(){
     $('#plat_wrap').collapse('show');
     $('#plat_show').addClass('hide');
     $('#plat_hide').removeClass('hide');
-    var ele = $('#fixedMenu');
-    ele.attr('offsetTop',ele.offset().top);
 }
 function platHide(){
     $('#plat_wrap').collapse('hide');
-    $('#plat_wrap').css('height','50px');
+    $('#plat_wrap').css('height','40px');
     $('#plat_show').removeClass('hide');
     $('#plat_hide').addClass('hide');
-    var ele = $('#fixedMenu');
-    ele.attr('offsetTop',ele.offset().top);
+}
+
+function changePlat(e){
+    var id = e.target.id;
+    if(id != filter.curPlat)
+    {
+        $('#'+filter.curPlat).removeClass('active');
+        $('#'+id).addClass('active');
+        filter.curPlat = id;
+        ajaxCall({"refreshPage":true,"refreshPlat":false});
+    }
 }
 
 function sort(orderBy){
     var newId = 'sort_'+orderBy;
     if(filter.sorted == orderBy)
     {
-
         var span = $('#'+newId+' span');
         span.removeClass();
         var sortCondition = filter.sortCondition;
@@ -229,10 +333,31 @@ function sort(orderBy){
         $('#'+newId).addClass('active');
         filter.sorted = orderBy;
     }
-    ajaxCall();
+    ajaxCall({"refreshPage":true,"refreshPlat":false});
 }
 
-
+function changePageNum(pageNum){
+    pageNum -= 1;
+    if(pageNum != filter.page)
+    {
+        filter.page = pageNum;
+        ajaxCall({"refreshPage":false,"refreshPlat":false});
+    }
+}
+function iniPage(totalNum){
+    var pageNum = Math.ceil(totalNum/filter.per);
+    $("#pagination").jPaginator({
+        selectedPage:1,
+        nbPages:pageNum,
+        marginPx:5,
+        nbVisible:6,
+        maxBtnLeft:'#max_backward',
+        maxBtnRight:'#max_forward',
+        onPageClicked: function(a,num) {
+            changePageNum(num);
+        }
+    });
+}
 
 
 
