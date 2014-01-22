@@ -12,10 +12,20 @@
 
 	</bean>
 
-	<bean id="investItemDao" class="cn.sotou.dao.InvestItemDao">
+
+	<beans:bean id="abstractDao" class="cn.sotou.dao.DaoSupport"
+		abstract="true">
 		<property name="factory">
 			<ref bean="sessionFactory"></ref>
 		</property>
+	</beans:bean>
+
+	<bean id="investItemDao" class="cn.sotou.dao.InvestItemDao"
+		parent="abstractDao">
 	</bean>
+
+	<bean id="enumPrefDao" class="cn.sotou.dao.EnumPrefDao" parent="abstractDao">
+	</bean>
+
 
 </beans>

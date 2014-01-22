@@ -3,25 +3,9 @@ package cn.sotou.dao;
 import java.util.Arrays;
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-
 import cn.sotou.dao.model.InvestItem;
 
-public class InvestItemDao {
-
-	private SessionFactory factory;
-
-	public SessionFactory getFactory() {
-		return factory;
-	}
-
-	public void setFactory(SessionFactory factory) {
-		this.factory = factory;
-		this.session = factory.openSession();
-	}
-
-	private Session session;
+public class InvestItemDao extends DaoSupport {
 
 	public InvestItemDao() {
 	}

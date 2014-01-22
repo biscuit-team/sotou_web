@@ -2,17 +2,17 @@ package cn.sotou.web.biz.query;
 
 import java.util.List;
 
-import cn.sotou.dao.model.InvestItem;
+import cn.sotou.web.model.InvestItemWrapper;
 
 public class InvestQueryResult {
-	private List<InvestItem> result;
+	private List<InvestItemWrapper> result;
 	private List<PlatformResultCount> statics;
 
-	public List<InvestItem> getResult() {
+	public List<InvestItemWrapper> getResult() {
 		return result;
 	}
 
-	public void setResult(List<InvestItem> result) {
+	public void setResult(List<InvestItemWrapper> result) {
 		this.result = result;
 	}
 
@@ -23,4 +23,5 @@ public class InvestQueryResult {
 	public void setStatics(List<PlatformResultCount> statics) {
 		this.statics = statics;
 	}
+
 }
