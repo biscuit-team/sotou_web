@@ -1,6 +1,5 @@
 package cn.sotou.web.biz.impl;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,6 +15,7 @@ import cn.sotou.dao.model.InvestItem;
 import cn.sotou.web.biz.InvestItemFilterService;
 import cn.sotou.web.biz.query.InvestQueryResult;
 import cn.sotou.web.biz.query.PlatformResultCount;
+import cn.sotou.web.biz.query.criteria.HqlBuilder;
 import cn.sotou.web.biz.query.criteria.InvestQueryCriteria;
 import cn.sotou.web.model.InvestItemExtraInfoWrapper;
 import cn.sotou.web.model.InvestItemWrapper;
@@ -92,7 +92,7 @@ public class InvestItemFilterImpl implements InvestItemFilterService {
 	}
 
 	private static String constractHQL(InvestQueryCriteria criteria) {
-		return "from InvestItem";
+		return HqlBuilder.buildHql(criteria);
 	}
 
 	private List<PlatformResultCount> getPlatfromCount(
