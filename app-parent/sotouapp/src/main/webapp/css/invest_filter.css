@@ -1,88 +1,157 @@
+.condition_decorator{
+    width:100%;
+    border-top-style: solid;
+    padding-top: 15px;
+    border-top-width: 10px;
+    border-top-color: #F0AB00;
+    border-bottom-style:solid;
+    border-bottom-width:10px;
+    border-bottom-color:#999;
+    padding-bottom:5px;
+
+}
 .filter_contain{
     text-align:center;
 }
-.filter_contain ul{
-    list-style:none;
-    padding-left:0px;
-
-}
-.filter_contain li{
-    display:inline-block;
-    margin-right:5px;
-
-}
-.filter_contain td{
-    padding: 0 10px 10px 0;
-    cursor:pointer;
-}
-.filter_contain td>a{
-    padding:5px 5px;
-    border-radius:5px;
-    color:black;
-    text-decoration:none;
-}
-.filter_contain .active{
-    background-color:#597eaa;
-    color:white;
-}
-.plat_contain{
-    width:100%;
-    background-color:#F0AB00;
-    text-align:left;
-    color:white;
-    min-height:60px;
-    padding-top:10px;
-    margin-bottom:15px;
-}
-.plat_contain .plat_title{
-    width:100px;
-    font-size:20px;
-    line-height:60px;
-    vertical-align:top;
-    text-align:right;
-}
-.plat_contain .platname_cell{
-    line-height:40px;
-    max-width:900px;
-    padding-left:25px;
-    text-align:left;
-    font-size:16px;
-
-}
-
-
 .condition_contain{
 }
+/*筛选条件类型*/
 .condition_contain .condition_left{
     width:100px;
     vertical-align:top;
     text-align:left;
     padding-left:25px;
     cursor:default;
+    padding-top:5px;
 }
-.condition_contain .condition span{
-    color: #666;
-    font-weight: normal;
-    max-width: 100px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-align: left;
-}
+/*.condition_contain .condition span{
+	color: #666;
+	font-weight: normal;
+	max-width: 100px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	text-align: left;
+}*/
 
-.fixedTop{
-    position:fixed;
-    top:0;
+/* ----------筛选条件布局开始---------- */
+.filter_contain td{
+    padding: 0 10px 10px 0;
+    cursor:pointer;
 }
+.filter_contain td>div{
+    padding:5px 5px;
+    border-radius:5px;
+    color:black;
+    text-decoration:none;
+}
+.filter_contain td>div:hover{
+    background-color:#f3f3f3;
+}
+.filter_contain td>div.active{
+    background-color:#597eaa;
+    color:white;
+}
+.filter_contain td>div.active:hover{
+    background-color:#597eaa;
+}
+/* ----------筛选条件布局结束---------- */
+
+/* ----------筛选条件自定义布局开始---------- */
+.filter_contain td  .self_wrap{
+    height:30px;
+    padding:0px;
+}
+.filter_contain td .self_active{
+    background-color:#597eaa;
+    color:white;
+}
+.self_wrap .self_text{
+    padding:5px;
+}
+.self_wrap .input_wrap{
+    position:relative;
+    padding: 5px;
+    padding-bottom: 8px;
+    background-color: white;
+    border: 1px solid #a7a6a6;
+    color:black;
+}
+/*自定义中输入框*/
+.input_wrap  .self_def{
+    width:25px;
+    height:20px;
+    display:inline;
+    padding:0px;
+}
+.input_wrap .self_def_button{
+    font-size:11px;
+    display:block;
+    margin-top:5px;
+    margin-left:50px;
+}
+/* ----------筛选条件自定义布局结束---------- */
+
+
+/* ----------平台布局开始---------- */
+.plat_decorator{
+    width:100%;
+    background-color:#F0AB00;
+    margin-bottom:15px;
+}
+.plat_contain{
+    text-align:left;
+    color:white;
+    min-height:60px;
+    padding-top:10px;
+}
+/*平台名称的单元格*/
+.plat_contain .platname_cell{
+    line-height:40px;
+    max-width:900px;
+    padding-left:25px;
+    text-align:left;
+    font-size:16px;
+}
+.platname_cell ul{
+    list-style:none;
+    padding-left:0px;
+
+}
+.platname_cell ul>li{
+    display:inline-block;
+    margin-right:5px;
+    cursor:pointer;
+    text-align:center;
+}
+.platname_cell ul>li:hover{
+    background-color:#f2f2f2;
+    color:black;
+}
+/*.plat_contain .plat_title{
+	width:100px;
+	font-size:20px;
+	line-height:60px;
+	vertical-align:top;
+	text-align:right;
+}*/
+/* ----------平台布局结束---------- */
+
+
+/* ----------排序框布局开始---------- */
 .sortbar{
     text-align:left;
     background-color:#f2f2f2;
     font-size:12px;
     height:40px;
-
+}
+.fixedTop{
+    position:fixed;
+    top:0;
 }
 .sortbar .sort_filter{
     float:left;
 }
+/*排序条件的ul*/
 .sort_filter .sort_btns{
     list-style:none;
     padding-left:28px;
@@ -92,7 +161,7 @@
     padding:10px;
     cursor:pointer;
 }
-.sort_btns .active{
+.sort_btns li.active{
     background-color:#fff;
     border:solid;
     border-color:#fff;
@@ -101,6 +170,7 @@
 .sort_btns .arrow{
     font-size:10px;
 }
+
 .sortbar .calculator{
     float:right;
     padding:10px;
@@ -113,3 +183,4 @@
     position:relative;
     top:-5px;
 }
+/* ----------排序框布局结束---------- */
