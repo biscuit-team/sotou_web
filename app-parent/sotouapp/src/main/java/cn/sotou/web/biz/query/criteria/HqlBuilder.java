@@ -15,10 +15,10 @@ public class HqlBuilder {
 
 		StringBuffer sb = new StringBuffer();
 
-		sb.append("from InvestItem where ");
+		sb.append("from InvestItem where process < 100 ");
 
 		// 利率
-		sb.append("yearprofitrate > ").append(criteria.getRate().getMin());
+		sb.append("and yearprofitrate > ").append(criteria.getRate().getMin());
 		if (criteria.getRate().getMax() > 0) {
 			sb.append(" and yearprofitrate < ").append(
 					criteria.getRate().getMax());
@@ -40,9 +40,10 @@ public class HqlBuilder {
 			sb.append(" and sourcesiteid = ").append(criteria.getPlatform());
 		}
 
-		if (criteria.getOderBy() != null) {
+		if (criteria.getOrderBy() != null
+				&& !criteria.getOrderBy().equals("default")) {
 			sb.append(" order by ")
-					.append(ORDER_FIRLD_MAP.get(criteria.getOderBy()))
+					.append(ORDER_FIRLD_MAP.get(criteria.getOrderBy()))
 					.append(" ").append(criteria.getOrderType());
 		}
 
