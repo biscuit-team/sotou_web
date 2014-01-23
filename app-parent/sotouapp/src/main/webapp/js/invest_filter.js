@@ -318,8 +318,8 @@ function displayItem(data){
         var $ele = $template.clone();
         var loan = data[i];
 
-        $ele.find('.loan_plat').text(loan.extra.siteInfo.sourcesitecn);
-        $ele.find('.loan_use').text(loan.name);
+        $ele.find('.loan_plat').html(loan.extra.siteInfo.sourcesitecn);
+        $ele.find('.loan_use').html(loan.name);
         $ele.find('.loan_use').attr('href','/invest/'+loan.loanid);
         var process = loan.process;
         var totalMoney = loan.totalmoney;
