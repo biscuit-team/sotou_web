@@ -90,10 +90,7 @@ public class InvestItemFilterImpl implements InvestItemFilterService {
 				new Long(investItem.getStaketype())));
 		type.setSiteInfo(enumPrefDao.getSiteInfoMap().get(
 				investItem.getSourcesiteid()));
-		/*
-		 * type.setSiteInfo(enumPrefDao.getSiteInfoMap().get(
-		 * investItem.getSourcesiteid()));
-		 */
+		type.setRepayType(enumPrefDao.getRepayTypeMap().get( new Long(investItem.getWaytorepay())));
 
 		wrapper.setExtra(type);
 		return wrapper;
