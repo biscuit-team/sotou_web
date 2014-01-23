@@ -108,7 +108,7 @@
 					<username>ci_user</username>
 					<password>ci_user_qwer1234</password>
 					<update>true</update>
-					<path>/sotou</path>
+					<path>/</path>
 				</configuration>
 			</plugin>
 		</plugins>

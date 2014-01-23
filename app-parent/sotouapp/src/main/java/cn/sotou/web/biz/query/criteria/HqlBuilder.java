@@ -19,6 +19,13 @@ public class HqlBuilder {
 
 		buildWhereHql(sb, criteria);
 
+		if (criteria.getOrderBy() != null
+				&& !criteria.getOrderBy().equals("default")) {
+			sb.append(" order by ")
+					.append(ORDER_FIRLD_MAP.get(criteria.getOrderBy()))
+					.append(" ").append(criteria.getOrderType());
+		}
+
 		return sb.toString();
 	}
 
@@ -29,7 +36,7 @@ public class HqlBuilder {
 
 		buildWhereHql(sb, criteria);
 
-		sb.append("group by sourcesiteid");
+		sb.append(" group by sourcesiteid");
 
 		return sb.toString();
 	}
@@ -58,13 +65,6 @@ public class HqlBuilder {
 
 		if (criteria.getPlatform() > -1) {
 			sb.append(" and sourcesiteid = ").append(criteria.getPlatform());
-		}
-
-		if (criteria.getOrderBy() != null
-				&& !criteria.getOrderBy().equals("default")) {
-			sb.append(" order by ")
-					.append(ORDER_FIRLD_MAP.get(criteria.getOrderBy()))
-					.append(" ").append(criteria.getOrderType());
 		}
 	}
 }
