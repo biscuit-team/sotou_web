@@ -311,6 +311,7 @@ function sort(orderBy){
 function displayItem(data){
     var $template = $('#item_template');
     var $wrap = $('#item_wrap');
+    $wrap.html('');
     var invest = $('#invest_num').val();
     for(var i =0;i<data.length;i++)
     {
