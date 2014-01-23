@@ -1,36 +1,5 @@
 filter = {};
 initialFilter();
-a = '';
-d = [{
-    "id": -1,
-    "name": "全部00000000000",
-    "count": 12
-},{
-    "id": 2,
-    "name": "拍拍贷77777777",
-    "count": 2
-},
-    {
-        "id": 3,
-        "name": "拍拍贷44444",
-        "count": 3
-    },{
-        "id": 4,
-        "name": "拍拍贷33333",
-        "count": 1
-    },{
-        "id": 5,
-        "name": "拍拍贷22222",
-        "count": 1
-    },{
-        "id": 6,
-        "name": "拍拍贷11111",
-        "count": 1
-    },{
-        "id": 7,
-        "name": "拍拍贷99999999",
-        "count": 1
-    },]
 function initialFilter(){
 
     var sortCondition = {};
@@ -47,6 +16,7 @@ function initialFilter(){
     filter.per = 20;
     filter.page = 0;
     filter.curPlat = "plat_-1";
+    filter.invest = 1000;
 }
 
 function changeCondition(id){
@@ -106,24 +76,23 @@ function ajaxCall(refresh){
         'rate.max':rateMax,'sum.min':sumMin,'sum.max':sumMax,'period.min':periodMin,
         'period.max':periodMax};
     $.ajax({
-        url : "http://localhost:8080/invest/query.json",
+        url : "/invest/query.json",
         type : "GET",
         data : data,
         dataType : "json",
         success : function(data){
-            data.statics = d;
             setTimeout(function (){
                 display(data,refresh)
             },2000);
-
         }
     });
 }
 function loadingBegin(refresh){
-    //platHide();
     if(refresh.refreshPlat)
     {
-        $('#plat_show').addClass('hide');
+        if(!filter.hidden)
+            togglePlat();
+        $('#plat_btn').addClass('hide');
         $('#plat_wrap ul').html("");
     }
     $('#loader').removeClass('hide');
@@ -138,8 +107,11 @@ function display(data,refresh){
     }
     if(refresh.refreshPage)
     {
-        iniPage(110);
+        var page = Math.ceil(data.statics[0].count);
+        iniPage(page);
     }
+    displayItem(data.result);
+
 }
 function displayPlat(platArray){
     var $ul = $('#plat_wrap ul');
@@ -167,7 +139,7 @@ function displayPlat(platArray){
     }
     if(isPlatMore())
     {
-        $('#plat_show').removeClass('hide');
+        $('#plat_btn').removeClass('hide');
     }
 }
 function selfDefine(type){
@@ -292,13 +264,13 @@ function isPlatMore(){
 }
 function platShow(){
     $('#plat_wrap').collapse('show');
-    $('#plat_show').addClass('hide');
+    $('#plat_btn').addClass('hide');
     $('#plat_hide').removeClass('hide');
 }
 function platHide(){
     $('#plat_wrap').collapse('hide');
     $('#plat_wrap').css('height','40px');
-    $('#plat_show').removeClass('hide');
+    $('#plat_btn').removeClass('hide');
     $('#plat_hide').addClass('hide');
 }
 
@@ -336,6 +308,69 @@ function sort(orderBy){
     ajaxCall({"refreshPage":true,"refreshPlat":false});
 }
 
+function displayItem(data){
+    var $template = $('#item_template');
+    var $wrap = $('#item_wrap');
+    var invest = $('#invest_num').val();
+    for(var i =0;i<data.length;i++)
+    {
+        var $ele = $template.clone();
+        var loan = data[i];
+
+        $ele.find('.loan_plat').text(loan.extra.siteInfo.sourcesitecn);
+        $ele.find('.loan_use').text(loan.name);
+        $ele.find('.loan_use').attr('href','/invest/'+loan.loanid);
+        var process = loan.process;
+        var totalMoney = loan.totalmoney;
+        var haveInvested = totalMoney*process/100;
+        var remain = totalMoney - haveInvested;
+        $ele.find('.invest_process').css('width',process+'%');
+        $ele.find('.have_invested').text(haveInvested);
+        $ele.find('.remain_invest').text(remain);
+        $ele.find('.loan_sum').text(totalMoney);
+        $ele.find('.profit_rate').text(loan.rate);
+        $ele.find('.reward_rate').text(loan.award);
+        var period = loan.duration;
+        if(period < 1)
+        {
+            period = Math.round(period*30.5);
+            $ele.find('.period_unit').text("天");
+        }
+        $ele.find('.loan_period').text(period);
+        $ele.find('.back_type').text(loan.extra.enSureType.type);
+        $ele.find('.ensure_type').text(loan.extra.repayType.type);
+        calcuProfit($ele,invest);
+        $ele.removeClass('hide');
+        $wrap.append($ele);
+    }
+
+}
+
+function calcuAllProfit(){
+    var invest = $('#invest_num').val();
+    $('#item_wrap>div').each(function(){
+        calcuProfit($(this),invest);
+    });
+    filter.invest = invest;
+}
+
+function calcuProfit($ele,invest){
+    var rate = parseInt($ele.find('.profit_rate').text());
+    var reward = parseInt($ele.find('.reward_rate').text());
+    var period = parseInt($ele.find('.loan_period').text());
+    var unit = $ele.find('period_unit').text();
+    if(unit == '天')
+    {
+        period = period/365;
+    }
+    var interest_profit = Math.round(invest*rate*period/100);
+    var reward_profit = invest*reward/100;
+    $ele.find('.interest_profit').text(interest_profit);
+    $ele.find('.reward_profit').text(reward_profit);
+    $ele.find('.total_profit').text(interest_profit+reward_profit);
+}
+
+
 function changePageNum(pageNum){
     pageNum -= 1;
     if(pageNum != filter.page)
@@ -361,22 +396,26 @@ function iniPage(totalNum){
 
 
 
-/*function togglePlat(){
- var hidden = !(filter.hidden);
- if(hidden) //应当是折叠状态
- {
- $('#plat_wrap').collapse('hide');
- $('#plat_wrap').css('height','60px');
- }
- else //应当是展开状态
- {
- $('#plat_wrap').collapse('show');
- }
- filter.hidden = hidden;
+function togglePlat(){
+    var hidden = !(filter.hidden);
+    if(hidden) //应当是折叠状态
+    {
+        $('#plat_wrap').collapse('hide');
+        $('#plat_wrap').css('height','40px');
+        $('#plat_hide').addClass('hide');
+        $('#plat_show').removeClass('hide');
+    }
+    else //应当是展开状态
+    {
+        $('#plat_wrap').collapse('show');
+        $('#plat_show').addClass('hide');
+        $('#plat_hide').removeClass('hide');
+    }
+    filter.hidden = hidden;
 
- }
+}
 
- function changeInvest(){
+/*function changeInvest(){
 
  }
 
