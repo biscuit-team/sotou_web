@@ -323,7 +323,7 @@ function displayItem(data){
         $ele.find('.loan_use').attr('href','/invest/'+loan.loanid);
         var process = loan.process;
         var totalMoney = loan.totalmoney;
-        var haveInvested = totalMoney*process/100;
+        var haveInvested = Math.round(totalMoney*process/100);
         var remain = totalMoney - haveInvested;
         $ele.find('.invest_process').css('width',process+'%');
         $ele.find('.have_invested').text(haveInvested);
