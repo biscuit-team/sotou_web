@@ -1,7 +1,7 @@
 package cn.sotou.web.biz.query.criteria;
 
 public class InvestQueryCriteria {
-	private OrderField oderBy;
+	private String oderBy;
 	private String orderType = "desc";
 	private DoubleFieldRank rate = new DoubleFieldRank();
 	private DoubleFieldRank sum = new DoubleFieldRank();;
@@ -11,11 +11,11 @@ public class InvestQueryCriteria {
 	private long platform = -1;
 	private boolean customize;
 
-	public OrderField getOderBy() {
+	public String getOderBy() {
 		return oderBy;
 	}
 
-	public void setOderBy(OrderField oderBy) {
+	public void setOderBy(String oderBy) {
 		this.oderBy = oderBy;
 	}
 
