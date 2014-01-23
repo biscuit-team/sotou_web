@@ -1,6 +1,16 @@
 package cn.sotou.web.biz.query.criteria;
 
+import java.util.Map;
+
+import com.google.common.collect.ImmutableMap;
+
 public class HqlBuilder {
+
+	private static final Map<String, String> ORDER_FIRLD_MAP = ImmutableMap
+			.<String, String> builder().put("sum", "totalmoney")
+			.put("process", "process").put("rate", "yearprofitrate")
+			.put("period", "duration").build();
+
 	public static String buildHql(InvestQueryCriteria criteria) {
 
 		StringBuffer sb = new StringBuffer();
@@ -23,8 +33,7 @@ public class HqlBuilder {
 		// 周期
 		sb.append(" and duration > ").append(criteria.getPeriod().getMin());
 		if (criteria.getPeriod().getMax() > 0) {
-			sb.append(" and duration < ").append(
-					criteria.getPeriod().getMax());
+			sb.append(" and duration < ").append(criteria.getPeriod().getMax());
 		}
 
 		if (criteria.getPlatform() > -1) {
@@ -32,7 +41,8 @@ public class HqlBuilder {
 		}
 
 		if (criteria.getOderBy() != null) {
-			sb.append(" order by ").append(criteria.getOderBy().toString())
+			sb.append(" order by ")
+					.append(ORDER_FIRLD_MAP.get(criteria.getOderBy()))
 					.append(" ").append(criteria.getOrderType());
 		}
 
