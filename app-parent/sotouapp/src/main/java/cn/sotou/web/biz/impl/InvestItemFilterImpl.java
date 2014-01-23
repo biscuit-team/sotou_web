@@ -80,6 +80,9 @@ public class InvestItemFilterImpl implements InvestItemFilterService {
 		// add extra information
 		InvestItemExtraInfoWrapper type = new InvestItemExtraInfoWrapper();
 
+		// FIXME reload on need
+		//enumPrefDao.reload();
+		
 		type.setEnSureType(enumPrefDao.getEnSureTypeMap().get(
 				investItem.getEnsuretype()));
 		type.setSiteInfo(enumPrefDao.getSiteInfoMap().get(

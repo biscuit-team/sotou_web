@@ -9,6 +9,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.hibernate.SessionFactory;
 
 import cn.sotou.dao.model.EnsureType;
+import cn.sotou.dao.model.InvestItem;
 import cn.sotou.dao.model.RepayType;
 import cn.sotou.dao.model.SiteInfo;
 import cn.sotou.dao.model.StakeType;
@@ -17,10 +18,10 @@ public class EnumPrefDao extends DaoSupport {
 
 	private final String iD_FIELD = "id";
 
-	private Map<Integer, RepayType> repayTypeMap;
-	private Map<Integer, StakeType> stakeTypeMap;
-	private Map<Integer, EnsureType> enSureTypeMap;
-	private Map<Integer, SiteInfo> siteInfoMap;
+	private Map<Integer, RepayType> repayTypeMap = new HashMap<Integer, RepayType>();
+	private Map<Integer, StakeType> stakeTypeMap = new HashMap<Integer, StakeType>();
+	private Map<Integer, EnsureType> enSureTypeMap = new HashMap<Integer, EnsureType>();
+	private Map<Integer, SiteInfo> siteInfoMap = new HashMap<Integer, SiteInfo>();
 
 	@Override
 	public void setFactory(SessionFactory factory) {
@@ -29,6 +30,9 @@ public class EnumPrefDao extends DaoSupport {
 	}
 
 	public void reload() {
+		
+		readPref(InvestItem.class);
+
 		repayTypeMap = readPref(RepayType.class);
 		stakeTypeMap = readPref(StakeType.class);
 		enSureTypeMap = readPref(EnsureType.class);
@@ -54,7 +58,7 @@ public class EnumPrefDao extends DaoSupport {
 	@SuppressWarnings("unchecked")
 	private <T> Map<Integer, T> readPref(Class<T> clazz) {
 		String hql = "from " + clazz.getName();
-		List<T> list = session.createCriteria(hql).list();
+		List<T> list = session.createQuery(hql).list();
 		try {
 			return this.listToMap(list);
 		} catch (IllegalAccessException e) {
