@@ -72,7 +72,7 @@ function ajaxCall(refresh){
     var orderType=map[oType];
     var per = filter.per;
     var page = filter.page;
-    var data ={'per':per,'page':page,'orderBy':orderBy,'orderType':orderType,'plat':plat,'rate.min':rateMin,
+    var data ={'per':per,'page':page,'orderBy':orderBy,'orderType':orderType,'platform':plat,'rate.min':rateMin,
         'rate.max':rateMax,'sum.min':sumMin,'sum.max':sumMax,'period.min':periodMin,
         'period.max':periodMax};
     $.ajax({
