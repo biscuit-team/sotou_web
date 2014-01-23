@@ -1,14 +1,15 @@
 package cn.sotou.dao.model;
 
-// Generated Jan 22, 2014 4:42:30 PM by Hibernate Tools 3.4.0.CR1
-
-import static javax.persistence.GenerationType.IDENTITY;
+// Generated Jan 23, 2014 2:53:45 PM by Hibernate Tools 3.4.0.CR1
 
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+
+import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -19,7 +20,7 @@ import javax.persistence.TemporalType;
  */
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "products_touzi", catalog = "dbtest")
+@Table(name = "products_touzi", catalog = "sotou")
 public class InvestItem implements java.io.Serializable {
 
 	private Long id;
@@ -32,7 +33,7 @@ public class InvestItem implements java.io.Serializable {
 	private double yearprofitrate;
 	private String rateaddtion;
 	private double award;
-	private long duration;
+	private double duration;
 	private int score;
 	private int staketype;
 	private String stakestate;
@@ -47,8 +48,8 @@ public class InvestItem implements java.io.Serializable {
 	private int predictprofit;
 	private int moneywaittorepay;
 	private String borrowereducation;
-	private int borrowermonthincome;
-	private int borroweryearincome;
+	private double borrowermonthincome;
+	private double borroweryearincome;
 	private String link;
 	private String reachlink;
 	private Date inserttime;
@@ -59,12 +60,12 @@ public class InvestItem implements java.io.Serializable {
 	public InvestItem(long sourcesiteid, int projecttype, String loanid,
 			String name, double totalmoney, double process,
 			double yearprofitrate, String rateaddtion, double award,
-			long duration, int score, int staketype, String stakestate,
+			double duration, int score, int staketype, String stakestate,
 			int ensuretype, int waytorepay, String waytospendmoney,
 			long endtime, double maxinvestnum, double averageinvestnum,
 			int investpeoplenum, int timestodelay, int predictprofit,
 			int moneywaittorepay, String borrowereducation,
-			int borrowermonthincome, int borroweryearincome, String link,
+			double borrowermonthincome, double borroweryearincome, String link,
 			String reachlink, Date inserttime) {
 		this.sourcesiteid = sourcesiteid;
 		this.projecttype = projecttype;
@@ -189,12 +190,12 @@ public class InvestItem implements java.io.Serializable {
 		this.award = award;
 	}
 
-	@Column(name = "duration", nullable = false)
-	public long getDuration() {
+	@Column(name = "duration", nullable = false, precision = 22, scale = 0)
+	public double getDuration() {
 		return this.duration;
 	}
 
-	public void setDuration(long duration) {
+	public void setDuration(double duration) {
 		this.duration = duration;
 	}
 
@@ -324,21 +325,21 @@ public class InvestItem implements java.io.Serializable {
 		this.borrowereducation = borrowereducation;
 	}
 
-	@Column(name = "borrowermonthincome", nullable = false)
-	public int getBorrowermonthincome() {
+	@Column(name = "borrowermonthincome", nullable = false, precision = 22, scale = 0)
+	public double getBorrowermonthincome() {
 		return this.borrowermonthincome;
 	}
 
-	public void setBorrowermonthincome(int borrowermonthincome) {
+	public void setBorrowermonthincome(double borrowermonthincome) {
 		this.borrowermonthincome = borrowermonthincome;
 	}
 
-	@Column(name = "borroweryearincome", nullable = false)
-	public int getBorroweryearincome() {
+	@Column(name = "borroweryearincome", nullable = false, precision = 22, scale = 0)
+	public double getBorroweryearincome() {
 		return this.borroweryearincome;
 	}
 
-	public void setBorroweryearincome(int borroweryearincome) {
+	public void setBorroweryearincome(double borroweryearincome) {
 		this.borroweryearincome = borroweryearincome;
 	}
 
@@ -369,4 +370,5 @@ public class InvestItem implements java.io.Serializable {
 	public void setInserttime(Date inserttime) {
 		this.inserttime = inserttime;
 	}
+
 }

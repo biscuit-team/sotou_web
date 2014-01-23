@@ -1,8 +1,8 @@
 package cn.sotou.web.biz.query.criteria;
 
 public class FieldRank {
-	private double min;
-	private double max;
+	private double min = 0;
+	private double max = -1.0;
 
 	public double getMin() {
 		return min;
