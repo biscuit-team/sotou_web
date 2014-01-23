@@ -47,10 +47,11 @@ public class InvestItemFilterImpl implements InvestItemFilterService {
 	public InvestQueryResult get(InvestQueryCriteria criteria) {
 		InvestQueryResult result = new InvestQueryResult();
 		String hql = constractHQL(criteria);
-		List<InvestItem> investItems = investItemDao.getByHQL(hql);
+		List<InvestItem> investItems = investItemDao.getByHQL(hql,
+				criteria.getPage() * criteria.getPer(), criteria.getPer());
 
 		result.setResult(wrapResult(investItems));
-		result.setStatics(getPlatfromCount(criteria));
+		result.setStatics(getPlatfromCount(hql));
 		return result;
 
 	}
@@ -80,12 +81,19 @@ public class InvestItemFilterImpl implements InvestItemFilterService {
 		// add extra information
 		InvestItemExtraInfoWrapper type = new InvestItemExtraInfoWrapper();
 
+		// FIXME reload on need
+		// enumPrefDao.reload();
+
 		type.setEnSureType(enumPrefDao.getEnSureTypeMap().get(
-				investItem.getEnsuretype()));
+				new Long(investItem.getEnsuretype())));
+		type.setStakeType(enumPrefDao.getStakeTypeMap().get(
+				new Long(investItem.getStaketype())));
 		type.setSiteInfo(enumPrefDao.getSiteInfoMap().get(
 				investItem.getSourcesiteid()));
-		type.setStakeType(enumPrefDao.getStakeTypeMap().get(
-				investItem.getStaketype()));
+		/*
+		 * type.setSiteInfo(enumPrefDao.getSiteInfoMap().get(
+		 * investItem.getSourcesiteid()));
+		 */
 
 		wrapper.setExtra(type);
 		return wrapper;
@@ -95,8 +103,7 @@ public class InvestItemFilterImpl implements InvestItemFilterService {
 		return HqlBuilder.buildHql(criteria);
 	}
 
-	private List<PlatformResultCount> getPlatfromCount(
-			InvestQueryCriteria criteria) {
+	private List<PlatformResultCount> getPlatfromCount(String hql) {
 		// TODO
 		PlatformResultCount count = new PlatformResultCount();
 		count.setCount(1);

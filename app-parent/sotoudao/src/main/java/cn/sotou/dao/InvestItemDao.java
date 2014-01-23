@@ -16,7 +16,8 @@ public class InvestItemDao extends DaoSupport {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<InvestItem> getByHQL(String hql) {
-		return session.createQuery(hql).list();
+	public List<InvestItem> getByHQL(String hql, int firstResult, int maxResults) {
+		return session.createQuery(hql).setFirstResult(firstResult)
+				.setMaxResults(maxResults).list();
 	}
 }
