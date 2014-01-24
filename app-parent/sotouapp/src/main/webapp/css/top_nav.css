@@ -1,7 +1,7 @@
 @CHARSET "UTF-8";
 
 .top_nav {
-	border-top: 4px solid #97CB4C;
+	border-top: 4px solid #F0AB00;
 }
 
 .nav_container {
@@ -16,7 +16,7 @@
 }
 
 .small_nav {
-	background: #97CB4C;
+	background: #F0AB00;
 }
 
 .small_tab_inner {
