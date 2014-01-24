@@ -59,8 +59,8 @@ function ajaxCall(refresh){
     var rate = $(array[0]);
     var sum = $(array[1]);
     var period = $(array[2]);
-    var rateMin = (rate.attr('data-min'))/100;
-    var rateMax =( rate.attr('data-max'))/100;
+    var rateMin = (rate.attr('data-min'));//100;
+    var rateMax =( rate.attr('data-max'));//100;
     var sumMin = sum.attr('data-min');
     var sumMax = sum.attr('data-max');
     var periodMin = period.attr('data-min');
