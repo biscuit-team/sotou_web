@@ -59,8 +59,8 @@ function ajaxCall(refresh){
     var rate = $(array[0]);
     var sum = $(array[1]);
     var period = $(array[2]);
-    var rateMin = (rate.attr('data-min'))/100;
-    var rateMax =( rate.attr('data-max'))/100;
+    var rateMin = (rate.attr('data-min'))*100;
+    var rateMax =( rate.attr('data-max'))*100;
     var sumMin = sum.attr('data-min');
     var sumMax = sum.attr('data-max');
     var periodMin = period.attr('data-min');
@@ -160,10 +160,10 @@ function hideSelfDefine(type){
     $(textId).removeClass('hide');
     $(inputWrapId).addClass('hide');
     $(selfWrapId).css('overflow','hidden');
-    $('#'+type+'_self_wrap').removeClass('active'); //change
+    $('#'+type+'_self_wrap').removeClass('active'); // change
 }
 
-//检查自定义框中输入是否正确，在jsp页面调用
+// 检查自定义框中输入是否正确，在jsp页面调用
 function checkRange(){
     var content = event.target.value;
     var valid = /^[0-9]*/g.exec(content)[0];
@@ -249,7 +249,7 @@ function adaptText(type,minVal,maxVal){
                 text = maxVal+'个月内'
             }
         }
-        $('#'+type+'_self_wrap').addClass('active');	//change
+        $('#'+type+'_self_wrap').addClass('active');	// change
     }
     return text;
 }
@@ -402,14 +402,14 @@ function iniPage(totalNum){
 
 function togglePlat(){
     var hidden = !(filter.hidden);
-    if(hidden) //应当是折叠状态
+    if(hidden) // 应当是折叠状态
     {
         $('#plat_wrap').collapse('hide');
         $('#plat_wrap').css('height','40px');
         $('#plat_hide').addClass('hide');
         $('#plat_show').removeClass('hide');
     }
-    else //应当是展开状态
+    else // 应当是展开状态
     {
         $('#plat_wrap').collapse('show');
         $('#plat_show').addClass('hide');
@@ -419,25 +419,17 @@ function togglePlat(){
 
 }
 
-/*function changeInvest(){
-
- }
-
-
- function hideConfirmButton(type){
-
- }
-
- function showConfirmButton(type){
- var ele = $('#'+type+'_self_wrap');
- ele.css('overflow','visible');
- }
-
- function numToUnit(num){
- var ini = 1000;
- num /= 1000;
- if(num<10)
- return num+'千';
- else
- return (num/10)+'万';
- }*/
+/*
+ * function changeInvest(){
+ *  }
+ * 
+ * 
+ * function hideConfirmButton(type){
+ *  }
+ * 
+ * function showConfirmButton(type){ var ele = $('#'+type+'_self_wrap');
+ * ele.css('overflow','visible'); }
+ * 
+ * function numToUnit(num){ var ini = 1000; num /= 1000; if(num<10) return
+ * num+'千'; else return (num/10)+'万'; }
+ */
