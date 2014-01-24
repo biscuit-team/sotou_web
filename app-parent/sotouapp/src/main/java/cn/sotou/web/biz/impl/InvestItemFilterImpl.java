@@ -112,7 +112,9 @@ public class InvestItemFilterImpl implements InvestItemFilterService {
 		
 		PlatformResultCount count1 = new PlatformResultCount();
 		count1.setName("全部");
+		count1.setId(-1L);
 		counts.add(count1);
+		
 		
 		int sum = 0;
 		for (Object object : l) {
