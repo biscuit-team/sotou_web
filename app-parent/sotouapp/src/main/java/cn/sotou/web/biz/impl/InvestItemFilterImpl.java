@@ -3,6 +3,7 @@ package cn.sotou.web.biz.impl;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -51,7 +52,7 @@ public class InvestItemFilterImpl implements InvestItemFilterService {
 				criteria.getPage() * criteria.getPer(), criteria.getPer());
 
 		result.setResult(wrapResult(investItems));
-		result.setStatics(getPlatfromCount(hql));
+		result.setStatics(getPlatfromCount(HqlBuilder.buildGroupHql(criteria)));
 		return result;
 
 	}
@@ -90,7 +91,8 @@ public class InvestItemFilterImpl implements InvestItemFilterService {
 				new Long(investItem.getStaketype())));
 		type.setSiteInfo(enumPrefDao.getSiteInfoMap().get(
 				investItem.getSourcesiteid()));
-		type.setRepayType(enumPrefDao.getRepayTypeMap().get( new Long(investItem.getWaytorepay())));
+		type.setRepayType(enumPrefDao.getRepayTypeMap().get(
+				new Long(investItem.getWaytorepay())));
 
 		wrapper.setExtra(type);
 		return wrapper;
@@ -100,13 +102,30 @@ public class InvestItemFilterImpl implements InvestItemFilterService {
 		return HqlBuilder.buildHql(criteria);
 	}
 
+	@SuppressWarnings("rawtypes")
 	private List<PlatformResultCount> getPlatfromCount(String hql) {
-		// TODO
-		PlatformResultCount count = new PlatformResultCount();
-		count.setCount(1);
-		count.setId(1L);
-		count.setName("拍拍贷");
-		return Arrays.asList(new PlatformResultCount[] { count });
+		
+		List<PlatformResultCount> counts = new ArrayList<PlatformResultCount>();
+		
+		List l = investItemDao.queryHql(hql);
+		l.size();
+		
+		PlatformResultCount count1 = new PlatformResultCount();
+		count1.setName("全部");
+		counts.add(count1);
+		
+		int sum = 0;
+		for (Object object : l) {
+			Map map = (Map)object;
+			PlatformResultCount count = new PlatformResultCount();
+			count.setCount(((Long)map.get("n")).intValue());
+			count.setId((Long)map.get("id"));
+			count.setName(enumPrefDao.getSiteInfoMap().get((Long)(map.get("id"))).getSourcesitecn());
+			counts.add(count);
+			sum+=(Long)map.get("n");
+		}
+		
+		counts.get(0).setCount(sum);
+		return counts;
 	}
-
 }

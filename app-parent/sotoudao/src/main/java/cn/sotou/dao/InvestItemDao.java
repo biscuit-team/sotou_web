@@ -20,4 +20,9 @@ public class InvestItemDao extends DaoSupport {
 		return session.createQuery(hql).setFirstResult(firstResult)
 				.setMaxResults(maxResults).list();
 	}
+	
+	@SuppressWarnings("rawtypes")
+	public List queryHql(String hql){
+		return session.createQuery(hql).list();
+	}
 }
