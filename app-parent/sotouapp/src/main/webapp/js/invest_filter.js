@@ -59,8 +59,8 @@ function ajaxCall(refresh){
     var rate = $(array[0]);
     var sum = $(array[1]);
     var period = $(array[2]);
-    var rateMin = rate.attr('data-min');
-    var rateMax = rate.attr('data-max');
+    var rateMin = (rate.attr('data-min'))/100;
+    var rateMax =( rate.attr('data-max'))/100;
     var sumMin = sum.attr('data-min');
     var sumMax = sum.attr('data-max');
     var periodMin = period.attr('data-min');
@@ -117,7 +117,7 @@ function displayPlat(platArray){
     var $ul = $('#plat_wrap ul');
     var $li = $("<li></li>");
     var tmp = platArray[0];
-    var id = "plat_"+tmp.id
+    var id = "plat_-1";
     $li.attr('id',id);
     $li.text(tmp.name+"("+tmp.count+")");
     $li.addClass('active');
@@ -321,6 +321,9 @@ function displayItem(data){
         $ele.find('.loan_plat').html(loan.extra.siteInfo.sourcesitecn);
         $ele.find('.loan_use').html(loan.name);
         $ele.find('.loan_use').attr('href','/invest/'+loan.loanid);
+        $ele.find('.btn-warning').bind('click',function(){
+                          window.location.href='/invest/'+loan.loanid;
+            });
         var process = loan.process;
         var totalMoney = loan.totalmoney;
         var haveInvested = Math.round(totalMoney*process/100);

@@ -196,7 +196,7 @@
 /* ----------排序框布局结束---------- */
 
 .item_contain{
-    min-height:700px;
+    min-height:600px;
     text-align:center;
     position:relative;
 }
