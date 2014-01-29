@@ -1,4 +1,4 @@
-package cn.sotou.web.controller;
+package cn.sotou.web.controller.ajax;
 
 import javax.inject.Inject;
 
