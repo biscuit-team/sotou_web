@@ -7,6 +7,9 @@
 		<property name="hibernate.connection.url">jdbc:mysql://localhost/sotou</property>
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password"></property>
+		
+		
+		<!-- TODO 使用 datasource -->
 		<!-- <property name="hibernate.default_schema">test</property> -->
 		
 		<!--<property name="connection.datasource">jdbc/sotouDS</property>-->
