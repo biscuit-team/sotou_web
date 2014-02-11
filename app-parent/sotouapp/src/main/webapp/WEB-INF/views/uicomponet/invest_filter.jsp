@@ -396,12 +396,6 @@
 
     $('.condition_contain .self_def').bind("blur",function(e){
         var id = e.target.id;
-        var minId = id.replace('max','min');
-        var maxId = id.replace('min','max');
-        var minFocus = $('#'+minId).is(':focus');
-        var maxFocus = $('#'+maxId).is(':focus');
-        var $button = $('#'+maxId).next();
-        var buttonFocus = $button.is(':focus');
         if(e.relatedTarget == null)      //另一个输入框与按钮也失去焦点
         {
             var type = id.split('_')[0];

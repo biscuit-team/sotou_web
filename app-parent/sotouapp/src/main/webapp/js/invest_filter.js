@@ -21,29 +21,24 @@ function initialFilter(){
 }
 
 function changeCondition(id){
-    var map = {}
-    var key = 'chosen';
     var type = '';
     if(id.indexOf('rate') ==0)
     {
-        key +='Rate';
         type = 'rate';
     }
     else if(id.indexOf('sum') ==0)
     {
-        key +='Sum';
         type = 'sum';
     }
     else if(id.indexOf('period') ==0)
     {
-        key +='Period';
         type = 'period';
     }
     else if(id.indexOf('loanType') ==0)
     {
-        key += 'LoanType';
         type = 'loanType';
     }
+    var key = 'chosen'+upperFirst(type);
     if(filter[key] != id)
     {
         hideSelfDefine(type);
@@ -52,8 +47,7 @@ function changeCondition(id){
     }
 }
 function changeFilterUI(type,newId){
-    var map ={'rate':'Rate','sum':'Sum','period':'Period','loanType':'LoanType'};
-    var key = 'chosen'+map[type];
+    var key = 'chosen'+upperFirst(type);
     var oldId = filter[key];
     filter[key] = newId;
     $('#'+oldId).removeClass('active');
@@ -212,7 +206,7 @@ function adaptText(type,minVal,maxVal){
     if((maxVal == -1)&&(minVal == 0))
     {
         text = '自定义';
-        changeCondition(type+'0');
+        changeFilterUI(type,type+'0');
     }
     else
     {
