@@ -13,6 +13,7 @@ function initialFilter(){
     filter.chosenRate = 'rate0';
     filter.chosenPeriod = 'period0';
     filter.chosenSum = 'sum0';
+    filter.chosenLoanType = 'loanType0';
     filter.per = 20;
     filter.page = 0;
     filter.curPlat = "plat_-1";
@@ -38,6 +39,11 @@ function changeCondition(id){
         key +='Period';
         type = 'period';
     }
+    else if(id.indexOf('loanType') ==0)
+    {
+        key += 'LoanType';
+        type = 'loanType';
+    }
     if(filter[key] != id)
     {
         hideSelfDefine(type);
@@ -46,7 +52,7 @@ function changeCondition(id){
     }
 }
 function changeFilterUI(type,newId){
-    var map ={'rate':'Rate','sum':'Sum','period':'Period'};
+    var map ={'rate':'Rate','sum':'Sum','period':'Period','loanType':'LoanType'};
     var key = 'chosen'+map[type];
     var oldId = filter[key];
     filter[key] = newId;
@@ -59,12 +65,14 @@ function ajaxCall(refresh){
     var rate = $(array[0]);
     var sum = $(array[1]);
     var period = $(array[2]);
+    var loanType = $(array[3]);
     var rateMin = (rate.attr('data-min'))*100;
     var rateMax =( rate.attr('data-max'))*100;
     var sumMin = sum.attr('data-min');
     var sumMax = sum.attr('data-max');
     var periodMin = period.attr('data-min');
     var periodMax = period.attr('data-max');
+    var loanTypeNum = loanType.attr('data-type');
     var plat = filter.curPlat.replace('plat_','');
     var orderBy = filter.sorted;
     var oType = filter.sortCondition[orderBy];
@@ -72,18 +80,19 @@ function ajaxCall(refresh){
     var orderType=map[oType];
     var per = filter.per;
     var page = filter.page;
+    if(refresh.refreshPage)
+        page = 0;
     var data ={'per':per,'page':page,'orderBy':orderBy,'orderType':orderType,'platform':plat,'rate.min':rateMin,
         'rate.max':rateMax,'sum.min':sumMin,'sum.max':sumMax,'period.min':periodMin,
-        'period.max':periodMax};
+        'period.max':periodMax,'loanType':loanTypeNum};
     $.ajax({
         url : "/invest/query.json",
         type : "GET",
         data : data,
         dataType : "json",
         success : function(data){
-            setTimeout(function (){
-                display(data,refresh)
-            },2000);
+                display(data,refresh);
+
         }
     });
 }
@@ -108,6 +117,7 @@ function display(data,refresh){
     if(refresh.refreshPage)
     {
         var page = Math.ceil(data.statics[0].count);
+        filter.page = 0;
         iniPage(page);
     }
     displayItem(data.result);
@@ -143,7 +153,10 @@ function displayPlat(platArray){
     }
 }
 function selfDefine(type){
-    changeFilterUI(type,'');
+    //changeFilterUI(type,'');
+    var upper = upperFirst(type);
+    var oldId = filter['chosen'+upper];
+    $('#'+oldId).removeClass('active');
     var textId = '#'+type+'_self_text';
     var inputWrapId = '#'+type+'_input_wrap';
     var selfWrapId = '#'+type+'_self_wrap';
@@ -250,6 +263,8 @@ function adaptText(type,minVal,maxVal){
             }
         }
         $('#'+type+'_self_wrap').addClass('active');	// change
+        var upper = upperFirst(type);
+        filter['chosen'+upper] = type+'_self_wrap';
     }
     return text;
 }
@@ -332,7 +347,7 @@ function displayItem(data){
         $ele.find('.have_invested').text(haveInvested);
         $ele.find('.remain_invest').text(remain);
         $ele.find('.loan_sum').text(totalMoney);
-        $ele.find('.profit_rate').text(loan.rate);
+        $ele.find('.profit_rate').text(loan.yearprofitrate);
         $ele.find('.reward_rate').text(loan.award);
         var period = loan.duration;
         if(period < 1)
@@ -417,6 +432,14 @@ function togglePlat(){
     }
     filter.hidden = hidden;
 
+}
+
+function upperFirst(str){
+    var len = str.length;
+    var pre = str.substring(0,1);
+    pre = pre.toUpperCase();
+    var post = str.substring(1,len);
+    return pre+post;
 }
 
 /*

@@ -29,7 +29,7 @@
                     <td><div id="rate4" onclick="changeCondition('rate4')" data-min="0.24" data-max="-1">24%以上</div>
                     </td>
                     <td><div id="rate_self_wrap" class="self_wrap"><div id="rate_self_text" class="self_text" onclick="selfDefine('rate')">自定义</div>
-                        <div id="rate_input_wrap" class="input_wrap hide"><input id="rate_min_input" type='text' class="form-control self_def" onfocus="showConfirmButton('rate')">% - <input id="rate_max_input" type='text' class="form-control self_def">%
+                        <div id="rate_input_wrap" class="input_wrap hide"><input id="rate_min_input" type='text' class="form-control self_def" >% - <input id="rate_max_input" type='text' class="form-control self_def">%
                             <button class="self_def_button" onclick="selfDefConfirm('rate')">确定</button>
                         </div>
                     </div>
@@ -85,6 +85,28 @@
                     </div>
                     </td>
 
+                </tr>
+
+                <tr>
+                    <td class="condition_left">贷款类型 :</td>
+                    <td><div id="loanType0" onclick="changeCondition('loanType0')" class="active" data-type="-1">不限</div>
+                    </td>
+                    <td><div id="loanType1" onclick="changeCondition('loanType1')" data-type="1">担保标</div>
+                    </td>
+                    <td><div id="loanType2" onclick="changeCondition('loanType2')" data-type="2">抵押标</div>
+                    </td>
+                    <td><div id="loanType3" onclick="changeCondition('loanType3')" data-type="3">流转标</div>
+                    </td>
+                    <td><div id="loanType4" onclick="changeCondition('loanType4')" data-type="4">信用标</div>
+                    </td>
+                    <td><div id="loanType5" onclick="changeCondition('loanType5')" data-type="5">净值标</div>
+                    </td>
+                    <td><div id="loanType6" onclick="changeCondition('loanType6')" data-type="6">企业标</div>
+                    </td>
+                    <td><div id="loanType7" onclick="changeCondition('loanType7')" data-type="7">奖励标</div>
+                    </td>
+                    <td><div id="loanType8" onclick="changeCondition('loanType8')" data-type="8">天标</div>
+                    </td>
                 </tr>
                 <!--<tr>
                 <td class="condition_left">预期利率 :</td>
@@ -369,6 +391,25 @@
             }
             console.log("Haven't scrolled in 250ms!");
         }, 100));
+
+    });
+
+    $('.condition_contain .self_def').bind("blur",function(e){
+        var id = e.target.id;
+        var minId = id.replace('max','min');
+        var maxId = id.replace('min','max');
+        var minFocus = $('#'+minId).is(':focus');
+        var maxFocus = $('#'+maxId).is(':focus');
+        var $button = $('#'+maxId).next();
+        var buttonFocus = $button.is(':focus');
+        if(e.relatedTarget == null)      //另一个输入框与按钮也失去焦点
+        {
+            var type = id.split('_')[0];
+            hideSelfDefine(type);
+            var upper = upperFirst(type);
+            var activeId = filter['chosen'+upper];
+            $('#'+activeId).addClass('active');
+        }
 
     });
 
