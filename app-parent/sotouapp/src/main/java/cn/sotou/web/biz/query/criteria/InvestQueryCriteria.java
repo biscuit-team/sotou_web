@@ -10,6 +10,7 @@ public class InvestQueryCriteria {
 	private int per = 20;
 	private long platform = -1;
 	private boolean customize;
+	private int loanType = -1;
 
 	public String getOrderBy() {
 		return orderBy;
@@ -81,5 +82,13 @@ public class InvestQueryCriteria {
 
 	public void setOrderType(String orderType) {
 		this.orderType = orderType;
+	}
+
+	public int getLoanType() {
+		return loanType;
+	}
+
+	public void setLoanType(int loanType) {
+		this.loanType = loanType;
 	}
 }
