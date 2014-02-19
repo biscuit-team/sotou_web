@@ -171,7 +171,7 @@ function hideSelfDefine(type){
 }
 
 // 检查自定义框中输入是否正确，在jsp页面调用
-function checkRange(){
+function checkRange(event){
     var content = event.target.value;
     var valid = /^[0-9]*/g.exec(content)[0];
     event.target.value = valid;
@@ -371,7 +371,7 @@ function calcuProfit($ele,invest){
     var rate = parseInt($ele.find('.profit_rate').text());
     var reward = parseInt($ele.find('.reward_rate').text());
     var period = parseInt($ele.find('.loan_period').text());
-    var unit = $ele.find('period_unit').text();
+    var unit = $ele.find('.period_unit').text();
     if(unit == '天')
     {
         period = period/365;
