@@ -1,0 +1,84 @@
+.input_wrapper{
+    border: 1px solid #ccc;
+    border-bottom: none;
+    padding-right: 20px;
+    width:100%;
+    overflow:hidden;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    -webkit-border-top-left-radius: 3px;
+    -webkit-border-top-right-radius: 3px;
+}
+.input_wrapper .input_area{
+    display: block;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    line-height: 20px;
+    border: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    padding: 10px;
+    color: #999;
+    width:100%;
+    resize:none;
+    outline:none;
+}
+.input_area:focus{
+    color:black;
+}
+.toolbar_wrapper{
+    position: relative;
+    width:100%;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.6);
+
+}
+.toolbar_wrapper .toolbar{
+    position: relative;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    margin-right: 100px;
+    padding-left:10px;
+    height: 32px;
+    line-height:32px;
+    font-size:14px;
+    color:#666;
+    border: 1px solid #ccc;
+    border-right: none;
+    border-bottom-color: #aaa;
+    border-bottom-left-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+}
+.toolbar .input_over{
+    color:#E44443;
+}
+.toolbar_wrapper .commit_comment{
+    cursor:pointer;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 32px;
+    width: 100px;
+    text-align: center;
+    color: #555;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    border-bottom-color: #aaa;
+    border-radius:0px; /*为了消除bootstrap所带来的上边框圆角*/
+    border-bottom-right-radius: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    background-color: #e6e6e6;
+    outline:none;
+}
+.commit_comment:hover{
+    background-color:#ed9c28;
+    color:white;
+}
+.toolbar_wrapper .button_disabled{
+    color:#999;
+    cursor:default;
+}
+.button_disabled:hover{
+    background-color: #e6e6e6;
+    color:#999;
+}
