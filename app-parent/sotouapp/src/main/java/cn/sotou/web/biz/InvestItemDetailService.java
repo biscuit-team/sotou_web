@@ -11,4 +11,5 @@ import java.util.List;
  */
 public interface InvestItemDetailService {
     public String getItemComment(long id);
+
 }

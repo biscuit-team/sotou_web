@@ -186,7 +186,7 @@ td {
                 <div id="comments_wrapper" class="comments_wrapper" style="padding-top: 20px;width: 600px">
                     <c:import url="/invest/7105/comment"></c:import>
                     <div class="comment_item">
-                        test
+                        wait a moment, I will disappear!!!
                     </div>
                 </div>
                 <div style="width:600px">
@@ -197,7 +197,7 @@ td {
                         <div class="toolbar">
                             字数:<span id="input_num">0</span>/140
                         </div>
-                        <button id="commit_comment" class="commit_comment">发表评论</button>
+                        <button id="commit_comment" class="commit_comment button_disabled" disabled="disabled">发表评论</button>
                     </div>
                 </div>
 			</div>
@@ -228,7 +228,7 @@ td {
 	<script src="/js/main.js"></script>
     <script>
         $().ready(function(){
-            $('#input_area').bind('keyup',function(event){computeWords(event)});
+            $('#input_area').bind('input propertychange',function(event){computeWords(event)});
             $('#commit_comment').bind('click',function(){commitComment()});
         });
     </script>

@@ -19,6 +19,7 @@ public class InvestItemDetailImpl implements InvestItemDetailService {
 
     @Override
     public String getItemComment(long id) {
+        System.out.println("in getComment");
         return "this is just a comment haha~";  //To change body of implemented methods use File | Settings | File Templates.
     }
 }
