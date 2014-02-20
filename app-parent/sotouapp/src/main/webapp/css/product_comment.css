@@ -64,7 +64,7 @@
     font-weight: bold;
     border: 1px solid #ccc;
     border-bottom-color: #aaa;
-    border-radius:0px; /*为了消除bootstrap所带来的上边框圆角*/
+    border-radius:0px; /*为了消除bootstrap button所带来的上边框圆角*/
     border-bottom-right-radius: 3px;
     -webkit-border-bottom-right-radius: 3px;
     background-color: #e6e6e6;

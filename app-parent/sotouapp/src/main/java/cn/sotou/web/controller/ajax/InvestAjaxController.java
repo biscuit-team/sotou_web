@@ -23,4 +23,9 @@ public class InvestAjaxController {
 	InvestQueryResult filter(InvestQueryCriteria criteria) {
 		return itemFilter.get(criteria);
 	}
+    @RequestMapping(value = "/insertComment", method = RequestMethod.GET)
+    public String insertComment(String content,long id) {
+        System.out.println("in ajax call");
+         return "forward:/invest/"+id+"/comment";
+    }
 }

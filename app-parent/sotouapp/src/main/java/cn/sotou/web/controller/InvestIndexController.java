@@ -1,12 +1,18 @@
 package cn.sotou.web.controller;
 
+import cn.sotou.web.biz.InvestItemDetailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.inject.Inject;
 
 @Controller
 @RequestMapping("/invest")
 public class InvestIndexController {
+    @Inject
+    private InvestItemDetailService itemComment;
 
 	@RequestMapping("/")
 	public String index() {
@@ -22,4 +28,9 @@ public class InvestIndexController {
 	public String detail(@PathVariable("id") long id) {
 		return "invest/detail";
 	}
+    @RequestMapping("/{id}/comment")
+    public @ResponseBody
+    String comment(@PathVariable("id") long id) {
+        return itemComment.getItemComment(id);
+    }
 }
