@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -44,7 +45,9 @@ td {
 </style>
 <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/product_comment.css">
 
+<script src="/js/product_comment.js"></script>
 <!--[if lt IE 9]>
 	<script src="js/vendor/html5-3.6-respond-1.1.0.min.js"></script>
 	<![endif]-->
@@ -179,7 +182,25 @@ td {
 
 				<h2>投标记录</h2>
 			</div>
-			<div class="tab-pane fade" id="comment">...</div>
+			<div class="tab-pane fade" id="comment">
+                <div id="comments_wrapper" class="comments_wrapper" style="padding-top: 20px;width: 600px">
+                    <c:import url="/invest/7105/comment"></c:import>
+                    <div class="comment_item">
+                        test
+                    </div>
+                </div>
+                <div style="width:600px">
+                    <div class="input_wrapper">
+                        <textarea id="input_area" class="input_area" placeholder="请输入评论" style="height: 67px;"></textarea>
+                    </div>
+                    <div class="toolbar_wrapper">
+                        <div class="toolbar">
+                            字数:<span id="input_num">0</span>/140
+                        </div>
+                        <button id="commit_comment" class="commit_comment">发表评论</button>
+                    </div>
+                </div>
+			</div>
 		</div>
 
 	</div>
@@ -205,5 +226,11 @@ td {
 	<script src="/js/vendor/bootstrap.min.js"></script>
 
 	<script src="/js/main.js"></script>
+    <script>
+        $().ready(function(){
+            $('#input_area').bind('keyup',function(event){computeWords(event)});
+            $('#commit_comment').bind('click',function(){commitComment()});
+        });
+    </script>
 </body>
 </html>
