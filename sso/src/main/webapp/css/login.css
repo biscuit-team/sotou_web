@@ -1,0 +1,65 @@
+@CHARSET "UTF-8";
+
+#page{
+	width:950px;
+}
+
+#logo{
+	padding: 20px 0 0 52px;
+}
+
+#loginPic{
+	background-image: url(../images/loginPic.jpg);
+	width:950px;
+	height:360px;
+}
+
+#login-box{
+	max-width:350px;
+	border:1px solid #e5e5e5;
+	margin-top:50px;
+	margin-right:20px;
+}
+
+#login-form{
+	padding:10px 20px;
+}
+#login-form input{
+	
+	margin:10px 0px;
+}
+
+#email{
+	width:250px;
+}
+
+#password{
+	width:250px;
+}
+
+#login-btn{
+	border:none;
+	width:250px;
+	height:33px;
+	background-color:#F0AB00;
+	color:#fff;
+}
+
+#login-label{
+	color:#333333;
+	font-weight: normal;
+}
+
+.login-row{
+	width:250px;
+	font-size:12px;
+}
+
+#forgetPsw{
+	margin-top: 6px;
+}
+
+#otherAccount{
+	padding:0px 20px 10px 20px;
+	font-size:12px;
+}
