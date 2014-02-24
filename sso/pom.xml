@@ -27,7 +27,7 @@
 
 	<properties>
 		<cas.version>4.0.0-RC3</cas.version>
-		<spring.version>3.2.2</spring.version>
+		<spring.version>3.2.2.RELEASE</spring.version>
 	</properties>
 
 	<dependencies>
@@ -40,6 +40,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.jasig.cas</groupId>
