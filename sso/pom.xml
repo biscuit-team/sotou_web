@@ -11,7 +11,7 @@
 	<!-- <repositories> <repository> <id>ja-sig</id> <url>http://oss.sonatype.org/content/repositories/releases/ 
 		</url> </repository> </repositories> -->
 
-	<!-- <repositories>
+	<repositories>
 		<repository>
 			<id>nexus</id>
 			<name>local private nexus</name>
@@ -23,7 +23,7 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
-	</repositories> -->
+	</repositories>
 
 	<properties>
 		<cas.version>3.5.2</cas.version>
