@@ -11,7 +11,7 @@
 	<!-- <repositories> <repository> <id>ja-sig</id> <url>http://oss.sonatype.org/content/repositories/releases/ 
 		</url> </repository> </repositories> -->
 
-	<repositories>
+	<!-- <repositories>
 		<repository>
 			<id>nexus</id>
 			<name>local private nexus</name>
@@ -23,25 +23,26 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
-	</repositories>
+	</repositories> -->
 
 	<properties>
-		<cas.version>4.0.0-RC3</cas.version>
-		<spring.version>3.2.2.RELEASE</spring.version>
+		<cas.version>3.5.2</cas.version>
+		<spring.version>3.1.1.RELEASE</spring.version>
 	</properties>
 
 	<dependencies>
-		<dependency>
+		<!-- <dependency>
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
-			<scope>runtime</scope>
-		</dependency>
+			<scope>provided</scope>
+		</dependency> -->
 		<dependency>
 			<groupId>org.jasig.cas</groupId>
 			<artifactId>cas-server-webapp</artifactId>
@@ -50,14 +51,30 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>r09</version>
+			<groupId>org.jasig.cas</groupId>
+			<artifactId>cas-server-support-jdbc</artifactId>
+			<version>${cas.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.29</version>
+		</dependency>
+
+
+		<!-- <dependency> <groupId>org.jasig.cas</groupId> <artifactId>cas-server-support-oauth</artifactId> 
+			<version>${cas.version}</version> <scope>runtime</scope> </dependency> <dependency> 
+			<groupId>org.scribe</groupId> <artifactId>scribe-up</artifactId> <version>1.0.0</version> 
+			</dependency> -->
+		<!-- <dependency> <groupId>com.google.guava</groupId> <artifactId>guava</artifactId> 
+			<version>r09</version> </dependency> -->
 	</dependencies>
 	<build>
 		<finalName>sso</finalName>
 		<plugins>
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-compiler-plugin</artifactId> 
+				<configuration> <source>1.7</source> <target>1.7</target> </configuration> 
+				</plugin> -->
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.1.1</version>
