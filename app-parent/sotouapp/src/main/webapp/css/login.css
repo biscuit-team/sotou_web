@@ -1,65 +1,120 @@
 @CHARSET "UTF-8";
 
-#page{
-	width:950px;
+#page {
+	width: 950px;
 }
 
-#logo{
-	padding: 20px 0 0 52px;
-}
-
-#loginPic{
+#loginPic {
 	background-image: url(../images/loginPic.jpg);
-	width:950px;
-	height:360px;
+	width: 950px;
+	height: 360px;
 }
 
-#login-box{
-	max-width:350px;
-	border:1px solid #e5e5e5;
-	margin-top:50px;
-	margin-right:20px;
+#login-box {
+	max-width: 350px;
+	border: 1px solid #e5e5e5;
+	margin-top: 50px;
+	margin-right: 20px;
 }
 
-#login-form{
-	padding:10px 20px;
-}
-#login-form input{
-	
-	margin:10px 0px;
+#login-form {
+	padding: 10px 20px;
 }
 
-#email{
-	width:250px;
+#login-form input {
+	margin: 10px 0px;
 }
 
-#password{
-	width:250px;
+#email {
+	width: 250px;
 }
 
-#login-btn{
-	border:none;
-	width:250px;
-	height:33px;
-	background-color:#F0AB00;
-	color:#fff;
+#password {
+	width: 250px;
 }
 
-#login-label{
-	color:#333333;
+#login-btn {
+	border: none;
+	width: 250px;
+	height: 33px;
+	background-color: #F0AB00;
+	color: #fff;
+}
+
+#login-label {
+	color: #333333;
 	font-weight: normal;
 }
 
-.login-row{
-	width:250px;
-	font-size:12px;
+.login-row {
+	width: 250px;
+	font-size: 12px;
 }
 
-#forgetPsw{
+#forgetPsw {
 	margin-top: 6px;
 }
 
-#otherAccount{
-	padding:0px 20px 10px 20px;
-	font-size:12px;
+#otherAccount {
+	padding: 0px 20px 10px 20px;
+	font-size: 12px;
+}
+
+.text-right {
+	text-align: right;
+}
+
+a.weibo-login {
+	background: url("../images/icon.png") no-repeat scroll 0px -121px
+		transparent;
+	padding-left: 25px !important;
+	font-size: 14px;
+}
+
+a.QQ-login {
+	background: url("../images/icon.png") no-repeat scroll 0px -151px
+		transparent;
+	padding-left: 25px !important;
+	font-size: 14px;
+}
+
+a.register {
+	font-size: 10px;
+	position: relative;
+	top: 7px;
+}
+
+#logo img {
+	width: 280px;
+	height: 140px;
+}
+
+#register-content {
+	width: 960px;
+	border: 1px solid #f5f5f5;
+	position: relative;
+	display: block;
+	margin: 20px auto 0;
+	-webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .1);
+}
+
+.content-head h3 {
+	margin: 20px 40px;
+	font-size: 24px;
+	font-family: '微软雅黑';
+	font-weight: 400;
+	color: #F0AB00;;
+}
+.content-body{
+	margin-top:30px;
+}
+#register-right{
+	width:45%;
+	margin-left:40px;
+}
+
+#register-form label.col-md-2{
+	padding-right:5px !important;
+	padding-left:5px  !important
 }
