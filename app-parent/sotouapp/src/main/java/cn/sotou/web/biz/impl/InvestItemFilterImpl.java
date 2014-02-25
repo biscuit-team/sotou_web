@@ -3,6 +3,7 @@ package cn.sotou.web.biz.impl;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -47,10 +48,11 @@ public class InvestItemFilterImpl implements InvestItemFilterService {
 	public InvestQueryResult get(InvestQueryCriteria criteria) {
 		InvestQueryResult result = new InvestQueryResult();
 		String hql = constractHQL(criteria);
-		List<InvestItem> investItems = investItemDao.getByHQL(hql);
+		List<InvestItem> investItems = investItemDao.getByHQL(hql,
+				criteria.getPage() * criteria.getPer(), criteria.getPer());
 
 		result.setResult(wrapResult(investItems));
-		result.setStatics(getPlatfromCount(criteria));
+		result.setStatics(getPlatfromCount(HqlBuilder.buildGroupHql(criteria)));
 		return result;
 
 	}
@@ -80,12 +82,17 @@ public class InvestItemFilterImpl implements InvestItemFilterService {
 		// add extra information
 		InvestItemExtraInfoWrapper type = new InvestItemExtraInfoWrapper();
 
+		// FIXME reload on need
+		// enumPrefDao.reload();
+
 		type.setEnSureType(enumPrefDao.getEnSureTypeMap().get(
-				investItem.getEnsuretype()));
+				new Long(investItem.getEnsuretype())));
+		type.setStakeType(enumPrefDao.getStakeTypeMap().get(
+				new Long(investItem.getStaketype())));
 		type.setSiteInfo(enumPrefDao.getSiteInfoMap().get(
 				investItem.getSourcesiteid()));
-		type.setStakeType(enumPrefDao.getStakeTypeMap().get(
-				investItem.getStaketype()));
+		type.setRepayType(enumPrefDao.getRepayTypeMap().get(
+				new Long(investItem.getWaytorepay())));
 
 		wrapper.setExtra(type);
 		return wrapper;
@@ -95,14 +102,32 @@ public class InvestItemFilterImpl implements InvestItemFilterService {
 		return HqlBuilder.buildHql(criteria);
 	}
 
-	private List<PlatformResultCount> getPlatfromCount(
-			InvestQueryCriteria criteria) {
-		// TODO
-		PlatformResultCount count = new PlatformResultCount();
-		count.setCount(1);
-		count.setId(1L);
-		count.setName("拍拍贷");
-		return Arrays.asList(new PlatformResultCount[] { count });
+	@SuppressWarnings("rawtypes")
+	private List<PlatformResultCount> getPlatfromCount(String hql) {
+		
+		List<PlatformResultCount> counts = new ArrayList<PlatformResultCount>();
+		
+		List l = investItemDao.queryHql(hql);
+		l.size();
+		
+		PlatformResultCount count1 = new PlatformResultCount();
+		count1.setName("全部");
+		count1.setId(-1L);
+		counts.add(count1);
+		
+		
+		int sum = 0;
+		for (Object object : l) {
+			Map map = (Map)object;
+			PlatformResultCount count = new PlatformResultCount();
+			count.setCount(((Long)map.get("n")).intValue());
+			count.setId((Long)map.get("id"));
+			count.setName(enumPrefDao.getSiteInfoMap().get((Long)(map.get("id"))).getSourcesitecn());
+			counts.add(count);
+			sum+=(Long)map.get("n");
+		}
+		
+		counts.get(0).setCount(sum);
+		return counts;
 	}
-
 }

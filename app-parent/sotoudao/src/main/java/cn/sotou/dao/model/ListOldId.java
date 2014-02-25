@@ -1,6 +1,6 @@
 package cn.sotou.dao.model;
 
-// Generated Jan 22, 2014 4:42:30 PM by Hibernate Tools 3.4.0.CR1
+// Generated Jan 23, 2014 2:53:45 PM by Hibernate Tools 3.4.0.CR1
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

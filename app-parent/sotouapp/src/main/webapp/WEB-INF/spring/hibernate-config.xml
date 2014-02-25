@@ -8,7 +8,7 @@
 
 		<property name="packagesToScan" value="cn.sotou.dao.model" />
 
-		<property name="configLocation" value="/WEB-INF/classess/hibernate.cfg.xml" />
+		<property name="configLocation" value="/WEB-INF/classes/hibernate.cfg.xml" />
 
 	</bean>
 
@@ -26,6 +26,9 @@
 
 	<bean id="enumPrefDao" class="cn.sotou.dao.EnumPrefDao" parent="abstractDao">
 	</bean>
+
+    <bean id="commentDao" class="cn.sotou.dao.EnumPrefDao" parent="abstractDao">
+    </bean>
 
 
 </beans>

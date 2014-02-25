@@ -1,4 +1,4 @@
-package cn.sotou.web.controller;
+package cn.sotou.web.controller.ajax;
 
 import javax.inject.Inject;
 
@@ -23,4 +23,9 @@ public class InvestAjaxController {
 	InvestQueryResult filter(InvestQueryCriteria criteria) {
 		return itemFilter.get(criteria);
 	}
+    @RequestMapping(value = "/insertComment", method = RequestMethod.POST)
+    public String insertComment(String content,long id) {
+        System.out.println("in ajax call");
+         return "forward:/invest/"+id+"/comment";
+    }
 }
