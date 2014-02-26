@@ -24,17 +24,17 @@ public class Comment implements java.io.Serializable {
 
 	private Integer cid;
 	private User user;
-	private ProductsTouzi productsTouzi;
+	private InvestItem investItem;
 	private String content;
 	private Date time;
 
 	public Comment() {
 	}
 
-	public Comment(User user, ProductsTouzi productsTouzi, String content,
+	public Comment(User user, InvestItem productsTouzi, String content,
 			Date time) {
 		this.user = user;
-		this.productsTouzi = productsTouzi;
+		this.investItem = productsTouzi;
 		this.content = content;
 		this.time = time;
 	}
@@ -62,12 +62,12 @@ public class Comment implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "productsId", nullable = false)
-	public ProductsTouzi getProductsTouzi() {
-		return this.productsTouzi;
+	public InvestItem getInvestItem() {
+		return this.investItem;
 	}
 
-	public void setProductsTouzi(ProductsTouzi productsTouzi) {
-		this.productsTouzi = productsTouzi;
+	public void setInvestItem(InvestItem investItem) {
+		this.investItem = investItem;
 	}
 
 	@Column(name = "content", nullable = false, length = 65535)

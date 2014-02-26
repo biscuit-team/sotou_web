@@ -33,11 +33,11 @@
 			<type>war</type>
 			<scope>runtime</scope>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.jasig.cas</groupId>
 			<artifactId>cas-server-support-jdbc</artifactId>
 			<version>${cas.version}</version>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>

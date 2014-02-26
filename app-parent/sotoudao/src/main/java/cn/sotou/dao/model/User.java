@@ -24,8 +24,8 @@ public class User implements java.io.Serializable {
 	private String email;
 	private String phone;
 	private String username;
-	private Set comments = new HashSet(0);
-	private Set logininfos = new HashSet(0);
+	private Set<Comment> comments = new HashSet<Comment>(0);
+	private Set<LoginInfo> logininfos = new HashSet<LoginInfo>(0);
 
 	public User() {
 	}
@@ -35,8 +35,8 @@ public class User implements java.io.Serializable {
 		this.username = username;
 	}
 
-	public User(String email, String phone, String username, Set comments,
-			Set logininfos) {
+	public User(String email, String phone, String username,
+			Set<Comment> comments, Set<LoginInfo> logininfos) {
 		this.email = email;
 		this.phone = phone;
 		this.username = username;
@@ -83,20 +83,20 @@ public class User implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	public Set getComments() {
+	public Set<Comment> getComments() {
 		return this.comments;
 	}
 
-	public void setComments(Set comments) {
+	public void setComments(Set<Comment> comments) {
 		this.comments = comments;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	public Set getLogininfos() {
+	public Set<LoginInfo> getLogininfos() {
 		return this.logininfos;
 	}
 
-	public void setLogininfos(Set logininfos) {
+	public void setLogininfos(Set<LoginInfo> logininfos) {
 		this.logininfos = logininfos;
 	}
 

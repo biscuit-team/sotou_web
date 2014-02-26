@@ -14,6 +14,7 @@ import javax.inject.Inject;
 @Controller
 @RequestMapping("/invest")
 public class InvestIndexController {
+	
 	@Inject
 	private InvestItemDetailService itemComment;
 

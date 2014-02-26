@@ -29,6 +29,8 @@
 
     <bean id="commentDao" class="cn.sotou.dao.EnumPrefDao" parent="abstractDao">
     </bean>
+    
+    <bean id="itemCommentDao" class="cn.sotou.dao.ItemCommentDao" parent="abstractDao"></bean>
 
 
 </beans>

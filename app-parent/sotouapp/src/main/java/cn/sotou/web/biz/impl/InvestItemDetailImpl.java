@@ -17,6 +17,7 @@ import java.util.List;
 
 @Service
 public class InvestItemDetailImpl implements InvestItemDetailService {
+	
     @Inject
     private ItemCommentDao itemCommentDao;
 
