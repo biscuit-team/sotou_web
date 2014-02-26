@@ -33,11 +33,8 @@
 			<type>war</type>
 			<scope>runtime</scope>
 		</dependency>
-		<!-- <dependency>
-			<groupId>org.jasig.cas</groupId>
-			<artifactId>cas-server-support-jdbc</artifactId>
-			<version>${cas.version}</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>org.jasig.cas</groupId> <artifactId>cas-server-support-jdbc</artifactId> 
+			<version>${cas.version}</version> </dependency> -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -45,11 +42,22 @@
 		</dependency>
 
 
-		<!-- <dependency> <groupId>org.jasig.cas</groupId> <artifactId>cas-server-support-oauth</artifactId> 
-			<version>${cas.version}</version> <scope>runtime</scope> </dependency> <dependency> 
-			<groupId>org.scribe</groupId> <artifactId>scribe-up</artifactId> <version>1.0.0</version> 
-			</dependency> <dependency> <groupId>com.google.guava</groupId> <artifactId>guava</artifactId> 
-			<version>r09</version> </dependency> -->
+		<dependency>
+			<groupId>org.jasig.cas</groupId>
+			<artifactId>cas-server-support-oauth</artifactId>
+			<version>${cas.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.scribe</groupId>
+			<artifactId>scribe-up</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>r09</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>sso</finalName>
