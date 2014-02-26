@@ -11,5 +11,6 @@ import java.util.List;
  */
 public interface InvestItemDetailService {
     public String getItemComment(long id);
+    public void insertComment(String content,long id);
 
 }

@@ -184,7 +184,7 @@ td {
 			</div>
 			<div class="tab-pane fade" id="comment">
                 <div id="comments_wrapper" class="comments_wrapper" style="padding-top: 20px;width: 600px">
-                    <c:import url="/invest/7105/comment"></c:import>
+                    <c:import url="/invest/10/comment"></c:import>
                     <div class="comment_item">
                         wait a moment, I will disappear!!!
                     </div>
