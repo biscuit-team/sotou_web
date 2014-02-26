@@ -40,7 +40,7 @@
 							</c:when>
 							<c:otherwise>
 								<form:input cssClass="form-control" cssErrorClass="error"
-									id="username" size="25" tabindex="1" placeholder="邮箱"
+									id="username" size="25" placeholder="邮箱"
 									path="username" autocomplete="off" htmlEscape="true" />
 							</c:otherwise>
 						</c:choose>

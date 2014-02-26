@@ -22,10 +22,18 @@
 	</properties>
 
 	<dependencies>
-		<!-- <dependency> <groupId>jstl</groupId> <artifactId>jstl</artifactId> 
-			<version>1.2</version> <scope>provided</scope> </dependency> <dependency> 
-			<groupId>org.springframework</groupId> <artifactId>spring-webmvc</artifactId> 
-			<version>${spring.version}</version> <scope>provided</scope> </dependency> -->
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.jasig.cas</groupId>
 			<artifactId>cas-server-webapp</artifactId>
@@ -33,8 +41,11 @@
 			<type>war</type>
 			<scope>runtime</scope>
 		</dependency>
-		<!-- <dependency> <groupId>org.jasig.cas</groupId> <artifactId>cas-server-support-jdbc</artifactId> 
-			<version>${cas.version}</version> </dependency> -->
+		<dependency>
+			<groupId>org.jasig.cas</groupId>
+			<artifactId>cas-server-support-jdbc</artifactId>
+			<version>${cas.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
