@@ -329,9 +329,9 @@ function displayItem(data){
 
         $ele.find('.loan_plat').html(loan.extra.siteInfo.sourcesitecn);
         $ele.find('.loan_use').html(loan.name);
-        $ele.find('.loan_use').attr('href','/invest/'+loan.loanid);
+        $ele.find('.loan_use').attr('href','/invest/'+loan.id);
         $ele.find('.btn-warning').bind('click',function(){
-                          window.location.href='/invest/'+loan.loanid;
+                          window.location.href='/invest/'+loan.id;
             });
         var process = loan.process;
         var totalMoney = loan.totalmoney;

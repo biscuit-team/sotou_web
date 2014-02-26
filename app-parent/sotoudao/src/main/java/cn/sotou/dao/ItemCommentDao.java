@@ -1,5 +1,8 @@
 package cn.sotou.dao;
 
+import cn.sotou.dao.model.Comment;
+import org.hibernate.Transaction;
+
 import java.util.List;
 
 /**
@@ -10,11 +13,14 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class ItemCommentDao extends DaoSupport {
-    public void insertComment(Object o){
-
+    public void insertComment(Comment c){
+        Transaction tran=session.beginTransaction();
+        session.save(c);
+        tran.commit();
     }
 
-    public List getCommentByHql(String hql){
+    public List<Comment> getCommentByHql(String hql){
         return session.createQuery(hql).list();
     }
+
 }
