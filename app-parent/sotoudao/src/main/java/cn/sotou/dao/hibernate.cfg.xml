@@ -8,7 +8,7 @@
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="hibernate.connection.url">jdbc:mysql://localhost/sotou</property>
 		<property name="hibernate.connection.username">root</property>
-		<property name="hibernate.connection.password"></property>
+		<property name="hibernate.connection.password">root</property>
 		
 		
 		<!-- 使用 datasource。参见 http://wiki.sotou.cn/wiki/bin/view/搜投网数据访问层/tomcat+JNDI数据源绑定  -->
