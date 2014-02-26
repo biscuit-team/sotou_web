@@ -31,18 +31,10 @@
 	</properties>
 
 	<dependencies>
-		<!-- <dependency>
-			<groupId>jstl</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>${spring.version}</version>
-			<scope>provided</scope>
-		</dependency> -->
+		<!-- <dependency> <groupId>jstl</groupId> <artifactId>jstl</artifactId> 
+			<version>1.2</version> <scope>provided</scope> </dependency> <dependency> 
+			<groupId>org.springframework</groupId> <artifactId>spring-webmvc</artifactId> 
+			<version>${spring.version}</version> <scope>provided</scope> </dependency> -->
 		<dependency>
 			<groupId>org.jasig.cas</groupId>
 			<artifactId>cas-server-webapp</artifactId>
@@ -62,12 +54,22 @@
 		</dependency>
 
 
-		<!-- <dependency> <groupId>org.jasig.cas</groupId> <artifactId>cas-server-support-oauth</artifactId> 
-			<version>${cas.version}</version> <scope>runtime</scope> </dependency> <dependency> 
-			<groupId>org.scribe</groupId> <artifactId>scribe-up</artifactId> <version>1.0.0</version> 
-			</dependency> -->
-		<!-- <dependency> <groupId>com.google.guava</groupId> <artifactId>guava</artifactId> 
-			<version>r09</version> </dependency> -->
+		<dependency>
+			<groupId>org.jasig.cas</groupId>
+			<artifactId>cas-server-support-oauth</artifactId>
+			<version>${cas.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.scribe</groupId>
+			<artifactId>scribe-up</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>r09</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>sso</finalName>
