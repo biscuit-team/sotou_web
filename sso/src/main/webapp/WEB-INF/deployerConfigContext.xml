@@ -203,4 +203,8 @@
 		</property>
 	</bean>
 
+	<bean id="userDao" class="cn.sotou.sso.service.UserDao">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
 </beans>
