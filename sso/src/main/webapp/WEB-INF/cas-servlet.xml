@@ -58,7 +58,7 @@
 		p:viewClass="org.springframework.web.servlet.view.InternalResourceView"
 		p:prefix="/WEB-INF/view/jsp/" p:suffix=".jsp" p:order="2" />
 
-	<bean id="errorHandlerResolver" class="org.jasig.cas.web.FlowExecutionExceptionResolver" />
+	<bean id="errorHandlerResolver" class="org.jasig.cas.web.NoSuchFlowExecutionExceptionResolver" />
 
 	<bean
 		class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter" />
@@ -112,11 +112,6 @@
 		p:flowExecutor-ref="flowExecutor" p:flowUrlHandler-ref="flowUrlHandler" />
 
 	<bean id="flowUrlHandler" class="org.jasig.cas.web.flow.CasDefaultFlowUrlHandler" />
-
-	<bean id="registerController" class="cn.sotou.sso.controller.RegisterController"
-		p:registerView="registerView">
-		<property name="userDao" ref="userDao" />
-	</bean>
 
 	<webflow:flow-executor id="flowExecutor"
 		flow-registry="flowRegistry">
@@ -237,6 +232,11 @@
 		<constructor-arg index="1" ref="attributeRepository" />
 	</bean>
 
+	<bean id="registerController" class="cn.sotou.sso.controller.RegisterController"
+		p:registerView="registerView">
+		<property name="userDao" ref="userDao" />
+	</bean>
+
 	<bean id="registeredServiceValidator"
 		class="org.jasig.cas.services.web.support.RegisteredServiceValidator"
 		p:servicesManager-ref="servicesManager" p:personAttributeDao-ref="attributeRepository" />
@@ -254,4 +254,10 @@
 	<bean id="credentialsValidator"
 		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"
 		p:messageInterpolator-ref="messageInterpolator" />
+
+	<bean id="oauthAction" class="org.jasig.cas.support.oauth.web.flow.OAuthAction">
+		<property name="centralAuthenticationService" ref="centralAuthenticationService" />
+		<property name="configuration" ref="oauthConfig" />
+	</bean>
+
 </beans>
