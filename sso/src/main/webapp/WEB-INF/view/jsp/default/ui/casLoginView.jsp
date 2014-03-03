@@ -10,16 +10,14 @@
 <title>登陆</title>
 <script src="/sso/js/jquery.min.js"></script>
 <script src="/sso/js/bootstrap.min.js"></script>
-<link href="/sso/css/bootstrap.min.css"
-	rel="stylesheet">
+<link href="/sso/css/bootstrap.min.css" rel="stylesheet">
 <link href="/sso/css/login.css" rel="stylesheet">
 </head>
 <body>
 	<div class="center-block" id="page">
 		<div class="header">
 			<h1 id="logo">
-				<a href=""><img alt="搜投网"
-					src="https://s.tbcdn.cn/apps/login/static/logo.png"></a>
+				<a href=""><img alt="搜投网" src="/sso/images/sotou2.jpg"></a>
 			</h1>
 		</div>
 		<div class="content">
@@ -40,8 +38,8 @@
 							</c:when>
 							<c:otherwise>
 								<form:input cssClass="form-control" cssErrorClass="error"
-									id="username" size="25" tabindex="1" placeholder="邮箱"
-									path="username" autocomplete="off" htmlEscape="true" />
+									id="username" size="25" placeholder="邮箱" path="username"
+									autocomplete="off" htmlEscape="true" />
 							</c:otherwise>
 						</c:choose>
 
@@ -67,10 +65,10 @@
 					</form:form>
 					<div class="row" id="otherAccount">
 						<div class="col-md-4">
-							<a><img>QQ</a>
+							<a href="${QQProviderUrl}"><img>QQ</a>
 						</div>
 						<div class="col-md-4">
-							<a><img>新浪微博 </a>
+							<a href="${SinaWeiboProviderUrl}"><img>新浪微博 </a>
 						</div>
 						<div class="col-md-4">
 							<a><img>支付宝</a>
