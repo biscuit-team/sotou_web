@@ -1,6 +1,7 @@
 package cn.sotou.dao;
 
 import cn.sotou.dao.model.Comment;
+import cn.sotou.dao.model.InvestItem;
 import org.hibernate.Transaction;
 
 import java.util.List;
@@ -19,8 +20,9 @@ public class ItemCommentDao extends DaoSupport {
         tran.commit();
     }
 
-    public List<Comment> getCommentByHql(String hql){
-        return session.createQuery(hql).list();
+    public InvestItem getInvestItemByHql(String hql){
+        session.clear();
+        return (InvestItem)session.createQuery(hql).uniqueResult();
     }
 
 }

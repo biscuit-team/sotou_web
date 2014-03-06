@@ -29,9 +29,9 @@ public class InvestAjaxController {
 	}
     @RequestMapping(value = "/insertComment", method = RequestMethod.POST)
     public String insertComment(String content,long id) {
-
         itemComment.insertComment(content,id);
-        System.out.println("in ajax call");
-         return "forward:/invest/"+id+"/comment";
+        //String result = itemComment.getItemComment(id);
+        //System.out.println(result);
+        return "forward:/invest/"+id+"/comment";
     }
 }

@@ -184,14 +184,14 @@ td {
 			</div>
 			<div class="tab-pane fade" id="comment">
                 <div id="comments_wrapper" class="comments_wrapper" style="padding-top: 20px;width: 600px">
-                    <c:import url="/invest/10/comment"></c:import>
+                    <c:import url="/invest/1/comment"></c:import>
                     <div class="comment_item">
                         wait a moment, I will disappear!!!
                     </div>
                 </div>
                 <div style="width:600px">
                     <div class="input_wrapper">
-                        <textarea id="input_area" class="input_area" placeholder="请输入评论" style="height: 67px;"></textarea>
+                        <textarea id="input_area" class="input_area" placeholder="请输入5-140字的评论" style="height: 67px;"></textarea>
                     </div>
                     <div class="toolbar_wrapper">
                         <div class="toolbar">

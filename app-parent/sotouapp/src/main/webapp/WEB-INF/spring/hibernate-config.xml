@@ -12,8 +12,7 @@
 
 	</bean>
 
-
-	<beans:bean id="abstractDao" class="cn.sotou.dao.DaoSupport"
+<beans:bean id="abstractDao" class="cn.sotou.dao.DaoSupport"
 		abstract="true">
 		<property name="factory">
 			<ref bean="sessionFactory"></ref>
