@@ -12,7 +12,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public interface InvestItemDetailService {
-    public List getItemComment(long id);
+    public List getItemComment(long id,int basePage,int perPage);
     public void insertComment(String content,long id);
 
 }

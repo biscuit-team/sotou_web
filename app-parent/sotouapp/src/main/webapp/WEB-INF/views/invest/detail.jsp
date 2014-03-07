@@ -189,6 +189,13 @@ td {
                         wait a moment, I will disappear!!!
                     </div>
                 </div>
+                <div id="more_wrapper">
+                    <div id="more"><a>更多</a></div>
+                    <div id="comment_loading" class="hide"><img src="../../../images/loading-small.gif">
+                    </div>
+                    <div id="nomore" class="hide">没有更多</div>
+
+                </div>
                 <div style="width:600px">
                     <div class="input_wrapper">
                         <textarea id="input_area" class="input_area" placeholder="请输入5-140字的评论" style="height: 67px;"></textarea>
@@ -230,6 +237,7 @@ td {
         $().ready(function(){
             $('#input_area').bind('input propertychange',function(event){computeWords(event)});
             $('#commit_comment').bind('click',function(){commitComment()});
+            $('#more').bind('click',function(){moreComments();})
         });
     </script>
 </body>

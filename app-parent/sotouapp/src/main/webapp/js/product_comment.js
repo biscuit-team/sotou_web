@@ -1,5 +1,6 @@
 commentInfo = {};
 commentInfo.preWordsNum = 0;
+commentInfo.baseNum = 0;
 function computeWords(event){
     var content = event.target.value;
     var length = content.length;
@@ -36,12 +37,27 @@ function commitComment(){
             $('#commit_comment').addClass('button_disabled');
             $('#input_num').text(0);
             commentInfo.preWordsNum = 0;
+            commentInfo.baseNum = 0;
         });
     }
     else
     {
         alert('Wrong!');
     }
+}
 
-
+function moreComments(){
+    commentInfo.baseNum++;
+    $('#more').addClass('hide');
+    $('#comment_loading').removeClass("hide");
+    var data={baseNum:commentInfo.baseNum};
+    $.ajax({
+        url: "/invest/1/comment",
+        data:data,
+        dataType:"html",
+        success: function(result){
+            $('#comment_loading').addClass("hide");
+            $('#comments_wrapper').append(result);
+        }
+    });
 }

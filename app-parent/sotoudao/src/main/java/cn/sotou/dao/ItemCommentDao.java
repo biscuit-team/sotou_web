@@ -20,9 +20,10 @@ public class ItemCommentDao extends DaoSupport {
         tran.commit();
     }
 
-    public InvestItem getInvestItemByHql(String hql){
+    public List<Comment> getInvestItemByHql(String hql,int basePage,int perPage){
         session.clear();
-        return (InvestItem)session.createQuery(hql).uniqueResult();
+        int startNum = basePage*perPage;
+        return session.createQuery(hql).setFirstResult(startNum).setMaxResults(perPage).list();
     }
 
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import cn.sotou.dao.model.InvestItem;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -41,7 +42,9 @@ public class InvestIndexController {
 	}
 
 	@RequestMapping("/{id}/comment")
-        public String comment(@PathVariable("id") long id,Model model) {
+        public String comment(@PathVariable("id") long id,
+                              @RequestParam(value = "baseNum", required = false) String baseNum,
+                              Model model) {
             /*String result =  itemComment.getItemComment(id);
             response.setContentType("text/html;charset=UTF-8");
             try {
@@ -49,8 +52,17 @@ public class InvestIndexController {
             } catch (IOException e) {
                 e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
             }*/
-        List list = itemComment.getItemComment(id);
+        int perPage = 3;
+        int basePage = 0;
+        if(baseNum != null)
+            basePage = Integer.parseInt(baseNum);
+        List list = itemComment.getItemComment(id,basePage,perPage);
+        boolean noMore = false;
+        if(list.size()<perPage && basePage!=0)
+            noMore = true;
         model.addAttribute("allComments",list);
+        model.addAttribute("noMore",noMore);
+
         return "invest/comment_list";
 	}
 

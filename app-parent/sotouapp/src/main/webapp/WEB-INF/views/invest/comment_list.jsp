@@ -15,3 +15,15 @@
     </div>
 
 </c:forEach>
+
+    <script>
+    <c:if test="${noMore == true}">
+        $('#more').addClass('hide');
+        $('#nomore').removeClass('hide');
+    </c:if>
+
+    <c:if test="${noMore == false}">
+        $('#more').removeClass('hide');
+        $('#nomore').addClass('hide');
+    </c:if>
+    </script>

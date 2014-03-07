@@ -26,12 +26,10 @@ public class InvestItemDetailImpl implements InvestItemDetailService {
     private ItemCommentDao itemCommentDao;
 
     @Override
-    public List getItemComment(long id){
+    public List getItemComment(long id,int basePage,int perPage){
         String hql = generateHql(id);
-        InvestItem investItem = itemCommentDao.getInvestItemByHql(hql);
-        System.out.println(investItem.getId());
-        ArrayList<Comment> allComments = new ArrayList<Comment>(investItem.getComments());
-        Collections.sort(allComments,new Comparator(){
+        ArrayList<Comment> allComments = new ArrayList<Comment>(itemCommentDao.getInvestItemByHql(hql,basePage,perPage));
+        /*Collections.sort(allComments,new Comparator(){
 
             @Override
             public int compare(Object o1, Object o2) {
@@ -39,8 +37,8 @@ public class InvestItemDetailImpl implements InvestItemDetailService {
                 Comment c2 = (Comment)o2;
                 return c2.getTime().compareTo(c1.getTime());  //To change body of implemented methods use File | Settings | File Templates.
             }
-        });
-        StringBuffer buffer = new StringBuffer();
+        });*/
+        //StringBuffer buffer = new StringBuffer();
         List<Map> result = new LinkedList<Map>();
         for(Comment eachComment : allComments)
         {
@@ -71,13 +69,12 @@ public class InvestItemDetailImpl implements InvestItemDetailService {
         User user = new User();
         user.setUid(1);
         comment.setUser(user);
-        System.out.println(content+" 字数："+content.length());
         itemCommentDao.insertComment(comment);
     }
 
     private String generateHql(long id){
         StringBuffer buffer = new StringBuffer();
-        buffer.append("from InvestItem where id=").append(id);
+        buffer.append("from Comment where investItem.id=").append(id).append(" order by time desc");
         return buffer.toString();
 
     }
